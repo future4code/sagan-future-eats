@@ -2,9 +2,9 @@ import React from 'react'
 import RestaurantPage from '../Restaurant Page/index'
  function FrontPage () {
     return (
-    <div >
-        
-        <RestaurantPage></RestaurantPage>
+    <div>
+        <img src="../images/logo-future-eats.svg"/>
+        <div>oi</div>
     </div>
  )
 }
