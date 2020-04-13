@@ -15,7 +15,6 @@ import { createBrowserHistory } from "history";
 import { createStore, applyMiddleware, compose } from "redux";
 import { generateReducers } from "../../reducers";
 import { routerMiddleware } from "connected-react-router";
-import { StylesProvider } from "@material-ui/core/styles";
 import { createGlobalStyle } from 'styled-components'
 
 const generateClassName = createGenerateClassName();
