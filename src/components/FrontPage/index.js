@@ -1,7 +1,6 @@
 import React from 'react'
-
-
-function FrontPage () {
+import RestaurantPage from '../Restaurant Page/index'
+ function FrontPage () {
     return (
     <div>
         <img src="images/logo-future-eats-invert.svg"/>
