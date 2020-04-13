@@ -244,7 +244,7 @@ const RestaurantButtomSubItenText = styled.div`
   color: #e02020;
 `
 const RestaurantCountItens = styled.div`
-width: 33px;
+  width: 33px;
   height: 33px;
   border-radius: 0px 8px 0px 8px;
   justify-self: end;
@@ -252,7 +252,9 @@ width: 33px;
   grid-area: topCounter;
   display:flex;
   justify-content:center;
-
+  position: relative;
+  right: -1px;
+  top: -1px;
 `
 const RestaurantCounterItensText = styled.div`
 width: 9px;
