@@ -3,8 +3,8 @@ import RestaurantPage from '../Restaurant Page/index'
  function FrontPage () {
     return (
     <div>
-        <img src="../images/logo-future-eats.svg"/>
-        <div>oi</div>
+        <img src="images/logo-future-eats-invert.svg"/>
+        <p>Oi</p>
     </div>
  )
 }
