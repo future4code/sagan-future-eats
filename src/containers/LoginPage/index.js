@@ -65,7 +65,7 @@ class LoginPage extends Component {
                         onChange={this.handleInputValue}
                         value={this.state.form.password}
                     />
-                    <MyButton btnText="Entrar" />
+                    <MyButton btnText="Entrar"/>
                 </FormStyle>
                 <p>Não possui cadastro? <span onClick={this.props.goToRegisterPage}>Clique aqui</span></p>
             </PageWrapper>
