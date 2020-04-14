@@ -5,7 +5,8 @@ import {
   MuiThemeProvider,
   createGenerateClassName,
   jssPreset,
-  CssBaseline
+  CssBaseline,
+  StylesProvider
 } from "@material-ui/core";
 import JssProvider from "react-jss/lib/JssProvider";
 import { create } from "jss";
@@ -50,7 +51,7 @@ export const App = () => (
         </MuiThemeProvider>
       </StylesProvider>
     </JssProvider>
-  </Provider>
+  </Provider>  
 );
 
 export default App;

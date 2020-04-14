@@ -4,12 +4,14 @@ import { Switch, Route } from "react-router-dom";
 import LoginPage from "../LoginPage";
 import RegisterPage from "../RegisterPage";
 import Profile from "../ProfilePage";
+import FeedRestaurants from "../../containers/FeedRestaurants";
 
 export const routes = {
   root:'/',
   login:"/login",
   register:"/register",
-  addressregister: "/addressregister"
+  addressregister: "/addressregister",
+  feedRestaurants: "/restaurants"
 };
 
 function Router(props) {
@@ -20,6 +22,7 @@ function Router(props) {
         <Route exact path={routes.register} component={RegisterPage} />
         {/* <Route path={routes.addressregister} component={} /> */}
         <Route exact path={routes.root} component={Profile} />
+        <Route exact path={routes.feedRestaurants} component={FeedRestaurants} />
       </Switch>
     </ConnectedRouter>
   );
