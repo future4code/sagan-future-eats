@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
 
 import { routes } from '../Router'
-import ButtonStyle from '../../components/button'
+
 import MyTextField from '../../components/input'
 import IconPassword from '../../components/Icons/index'
 
 import { PageWrapper, ContentWrapper, FormStyle } from '../style/styles'
+import MyButton from "../../components/material/Button";
 
 class LoginPage extends Component {
     constructor(props) {
@@ -62,9 +63,14 @@ class LoginPage extends Component {
                             onChange={this.handleInputValue}
                             value={this.state.form.password}
                         />
+<<<<<<< HEAD
                         <IconPassword/>
                         <ButtonStyle type="submit" btnText="Entrar" />
                         <p>Não possui cadastro? <span onClick={this.props.goToRegisterPage}><u>Clique aqui.</u></span></p>
+=======
+                        <MyButton btnText="Entrar" />
+                        <p>Não possui cadastro? <span onClick={this.props.goToRegisterPage}>Clique aqui</span></p>
+>>>>>>> fece9fee4d52534e93aa1a6989b52860710939a1
                     </FormStyle>
                 </ContentWrapper>
             </PageWrapper>

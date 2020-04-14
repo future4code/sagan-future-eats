@@ -1,12 +1,15 @@
 import React from "react";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
+import {StylesProvider} from '@material-ui/core/styles'
 import {
   MuiThemeProvider,
   createGenerateClassName,
   jssPreset,
-  CssBaseline
+  CssBaseline,
+  StylesProvider
 } from "@material-ui/core";
+import {StylesProvider} from '@material-ui/core/styles'
 import JssProvider from "react-jss/lib/JssProvider";
 import { create } from "jss";
 import theme from "../../style/theme";
@@ -51,7 +54,7 @@ export const App = () => (
         </MuiThemeProvider>
       </StylesProvider>
     </JssProvider>
-  </Provider>
+  </Provider>  
 );
 
 export default App;
