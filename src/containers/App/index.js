@@ -17,7 +17,6 @@ import { createStore, applyMiddleware, compose } from "redux";
 import { generateReducers } from "../../reducers";
 import { routerMiddleware } from "connected-react-router";
 import { createGlobalStyle } from 'styled-components'
-import { StylesProvider } from '@material-ui/core/styles';
 
 const generateClassName = createGenerateClassName();
 const jss = create({
