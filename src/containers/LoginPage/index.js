@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
-
+import {login} from '../../actions/Auth'
 import { routes } from '../Router'
 
 import MyTextField from '../../components/input'
@@ -33,7 +33,8 @@ class LoginPage extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        this.props.login(this.state.form)
+        const {form} = this.state
+        this.props.login(form.email, form.password)
         this.setState({
             form: {
                 password: '',
@@ -74,7 +75,8 @@ class LoginPage extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        goToRegisterPage: () => dispatch(push(routes.register))
+        goToRegisterPage: () => dispatch(push(routes.register)),
+        login: (email, password) => dispatch(login(email, password)),
     }
 }
 
