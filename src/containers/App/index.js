@@ -1,6 +1,7 @@
 import React from "react";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
+import {StylesProvider} from '@material-ui/core/styles'
 import {
   MuiThemeProvider,
   createGenerateClassName,
