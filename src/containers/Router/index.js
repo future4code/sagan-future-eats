@@ -19,7 +19,7 @@ function Router(props) {
         <Route exact path={routes.login} component={LoginPage} />
         <Route exact path={routes.register} component={RegisterPage} />
         {/* <Route path={routes.addressregister} component={} /> */}
-        <Route exact path={routes.root} component={Profile} />
+        <Route exact path={routes.root} component={LoginPage} />
       </Switch>
     </ConnectedRouter>
   );
