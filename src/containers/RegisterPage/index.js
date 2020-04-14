@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import ButtonStyle from '../../components/button'
 import MyTextField from '../../components/input'
 import { connect } from "react-redux";
 import {PageWrapper, ContentWrapper, FormStyle} from '../style/styles'
 import {signup} from '../../actions/Auth'
+import MyButton from "../../components/material/Button";
 
 class RegisterPage extends Component {
   constructor(props) {
@@ -12,8 +12,8 @@ class RegisterPage extends Component {
       form: {
         name: '',
         email: '',
-        cpf:'',
-        password:'',
+        cpf: '',
+        password: '',
       }
     }
   }
@@ -35,8 +35,8 @@ class RegisterPage extends Component {
       form: {
         name: '',
         email: '',
-        cpf:'',
-        password:'',
+        cpf: '',
+        password: '',
       }
     })
   }
@@ -46,7 +46,7 @@ class RegisterPage extends Component {
       <PageWrapper>
         <ContentWrapper>
           <FormStyle onSubmit={this.handleSubmit}>
-              <h3>Cadastrar</h3>
+            <h3>Cadastrar</h3>
             <MyTextField
               name="name"
               type="text"
@@ -61,7 +61,7 @@ class RegisterPage extends Component {
               required={true}
               onChange={this.handleInputValue}
               value={this.state.form.email} />
-              <MyTextField
+            <MyTextField
               name="cpf"
               type="text"
               label="CPF"
@@ -75,14 +75,14 @@ class RegisterPage extends Component {
               required={true}
               onChange={this.handleInputValue}
               value={this.state.form.password} />
-              <MyTextField
+            <MyTextField
               name="password"
               type="password"
               label="Confirmar a senha anterior"
               required={true}
               onChange={this.handleInputValue}
               value={this.state.form.password} />
-            <ButtonStyle type='submit' btnText="Criar" />
+            <MyButton btnText='Criar' />
           </FormStyle>
         </ContentWrapper>
       </PageWrapper>

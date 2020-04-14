@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
 import {login} from '../../actions/Auth'
 import { routes } from '../Router'
-import ButtonStyle from '../../components/button'
+
 import MyTextField from '../../components/input'
 
 import { PageWrapper, ContentWrapper, FormStyle } from '../style/styles'
+import MyButton from "../../components/material/Button";
 
 
 class LoginPage extends Component {
@@ -63,7 +64,7 @@ class LoginPage extends Component {
                             onChange={this.handleInputValue}
                             value={this.state.form.password}
                         />
-                        <ButtonStyle type="submit" btnText="Entrar" />
+                        <MyButton btnText="Entrar" />
                         <p>Não possui cadastro? <span onClick={this.props.goToRegisterPage}>Clique aqui</span></p>
                     </FormStyle>
                 </ContentWrapper>
