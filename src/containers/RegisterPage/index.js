@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import MyTextField from '../../components/input'
-
-import { PageWrapper, ContentWrapper, FormStyle } from '../style/styles'
+import { connect } from "react-redux";
+import {PageWrapper, ContentWrapper, FormStyle} from '../style/styles'
+import {signup} from '../../actions/Auth'
 import MyButton from "../../components/material/Button";
-
 
 class RegisterPage extends Component {
   constructor(props) {
@@ -29,7 +29,8 @@ class RegisterPage extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.submitForm(this.state.form)
+    const {form} = this.state
+    this.props.signup(form.email, form.password, form.name, form.cpf)
     this.setState({
       form: {
         name: '',
@@ -88,7 +89,10 @@ class RegisterPage extends Component {
     );
   }
 }
-
-
-
-export default RegisterPage
+function mapDispatchToProps(dispatch) {
+  return {
+    
+    signup: (email, password, name, cpf) => dispatch(signup(email, password, name, cpf)),
+  }
+} 
+export default connect(null, mapDispatchToProps)(RegisterPage)
