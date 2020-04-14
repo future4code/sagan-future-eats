@@ -43,7 +43,7 @@ export function MyInput(props) {
         type={props.type}
         value={props.value}
         onChange={props.onChange}
-        required
+        required={props.required}
         fullWidth
         InputLabelProps={{
           shrink: true,

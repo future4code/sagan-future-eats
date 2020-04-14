@@ -1,25 +1,65 @@
 import React from 'react'
 import styled from 'styled-components'
-import MyBottonNav from '../../components/material/BottomNav'
 import MyButton from '../../components/material/Button'
-import { MyInput, MyPasswordInput } from '../../components/material/Inputs'
+import { MyInput } from '../../components/material/Inputs'
+import MyPageTitle from '../../components/pageTitleBar'
 
 const PageWrapper = styled.div`
   width: 100%;
 `
 
 export class ProfileEdit extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props)
+    this.state = {
+      form: {
+        name: 'geggwe',
+        email: 'egwg',
+        cpf: 'egwegr',
+      }
+    }
   }
 
-  render(){
-    return(
+  handleInputChange = (e) => {
+    this.setState({
+      form: {
+        ...this.state.form,
+        [e.target.name]: e.target.value
+      }
+    })
+  }
+
+  render() {
+    return (
       <PageWrapper>
-        <MyInput label='Endereço' placeholder="Av. / Rua" />
-        <MyPasswordInput label='Senha' />
-        <MyButton btnText='Confirmar' />
-        <MyBottonNav />
+        <MyPageTitle showBack pageTitle='Editar'/>
+        <form>
+          <MyInput
+            label='Nome'
+            name='name'
+            type='text'
+            required
+            value={this.state.form.name}
+            onChange={this.handleInputChange}
+          />
+          <MyInput
+            label='E-mail'
+            name='email'
+            type='email'
+            required
+            value={this.state.form.email}
+            onChange={this.handleInputChange}
+          />
+          <MyInput
+            label='CPF'
+            name='cpf'
+            type='text'
+            required
+            value={this.state.form.cpf}
+            onChange={this.handleInputChange}
+          />
+          <MyButton btnText='Salvar' />
+        </form>
       </PageWrapper>
     )
   }
