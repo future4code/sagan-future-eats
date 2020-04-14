@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import LoginPage from "../LoginPage";
 import RegisterPage from "../RegisterPage";
 import Profile from "../ProfilePage";
+import FeedRestaurants from "../../containers/FeedRestaurants";
 import CartPage from "../CartPage";
 
 export const routes = {
@@ -11,7 +12,9 @@ export const routes = {
   login:"/login",
   register:"/register",
   addressregister: "/addressregister",
+  feedRestaurants: "/restaurants",
   cart:'/cart',
+
 };
 
 function Router(props) {
@@ -22,6 +25,7 @@ function Router(props) {
         <Route exact path={routes.register} component={RegisterPage} />
         {/* <Route path={routes.addressregister} component={} /> */}
         <Route exact path={routes.root} component={Profile} />
+        <Route exact path={routes.feedRestaurants} component={FeedRestaurants} />
         <Route exact path={routes.cart} component={CartPage} />
       </Switch>
     </ConnectedRouter>
