@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import ButtonStyle from '../../components/button'
-import MyTextField from '../../components/input'
 
-import {PageWrapper, ContentWrapper, FormStyle} from '../style/styles'
+
+import {PageWrapper, FormStyle} from '../style/styles'
+import { MyInput } from "../../components/material/Inputs";
+import MyButton from "../../components/material/Button";
 
 
 class AddressRegister extends Component {
@@ -47,54 +48,58 @@ class AddressRegister extends Component {
   render() {
     return (
       <PageWrapper>
-        <ContentWrapper>
+        <h3>Meu Endereço</h3>
           <FormStyle onSubmit={this.handleSubmit}>
-              <h3>Meu Endereço</h3>
-            <MyTextField
+            <MyInput
               name="street"
               type="text"
               label="Logradouro"
+              placeholder="Rua / Av."
               required={true}
               onChange={this.handleInputValue}
               value={this.state.form.name} />
-            <MyTextField
+            <MyInput
               name="number"
               type="number"
               label="Número"
+              placeholder="Número"
               required={true}
               onChange={this.handleInputValue}
               value={this.state.form.email} />
-              <MyTextField
+              <MyInput
               name="complement"
               type="text"
               label="Complemento"
+              placeholder="Apto. / Bloco"
               required={true}
               onChange={this.handleInputValue}
               value={this.state.form.cpf} />
-            <MyTextField
+            <MyInput
               name="neighbourhood"
               type="text"
               label="Bairro"
+              placeholder="Bairro"
               required={true}
               onChange={this.handleInputValue}
               value={this.state.form.password} />
-              <MyTextField
+              <MyInput
               name="city"
               type="text"
               label="Cidade"
+              placeholder="Cidade"
               required={true}
               onChange={this.handleInputValue}
               value={this.state.form.password} />
-              <MyTextField
+              <MyInput
               name="state"
               type="text"
               label="Estado"
+              placeholder="Estado"
               required={true}
               onChange={this.handleInputValue}
               value={this.state.form.password} />
-            <ButtonStyle btnText="Salvar" />
+            <MyButton btnText="Salvar" />
           </FormStyle>
-        </ContentWrapper>
       </PageWrapper>
     );
   }

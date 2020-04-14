@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const PageWrapper = styled.div`
   width: 100%;
-  height: calc(100vh - 16px);
+  height: calc(100vh - 18px);
   display:flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -18,10 +18,10 @@ export const ContentWrapper = styled.div`
   align-items:center;
 `
 export const FormStyle = styled.form`
-  width: 35%;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  align-items:center;
+  width: 100%;
+`
+export const LogoFutureEats = styled.img`
+  padding: 30px;
+
 `
 

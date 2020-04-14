@@ -4,11 +4,11 @@ import { push } from 'connected-react-router';
 
 import { routes } from '../Router'
 
-import MyTextField from '../../components/input'
-import IconPassword from '../../components/Icons/index'
-
-import { PageWrapper, ContentWrapper, FormStyle } from '../style/styles'
+import { PageWrapper, FormStyle, LogoFutureEats } from '../style/styles'
 import MyButton from "../../components/material/Button";
+import { MyPasswordInput, MyInput } from "../../components/material/Inputs";
+
+
 
 class LoginPage extends Component {
     constructor(props) {
@@ -45,34 +45,29 @@ class LoginPage extends Component {
     render() {
         return (
             <PageWrapper>
-                <ContentWrapper>
-                    <FormStyle onSubmit={this.handleSubmit}>
-                    <h3>Entrar</h3>
-                        <MyTextField
-                            name="email"
-                            type="email"
-                            label="Email"
-                            required={true}
-                            onChange={this.handleInputValue}
-                            value={this.state.form.email} />
-                        <MyTextField
-                            name="password"
-                            type="password"
-                            label="senha"
-                            required={true}
-                            onChange={this.handleInputValue}
-                            value={this.state.form.password}
-                        />
-<<<<<<< HEAD
-                        <IconPassword/>
-                        <ButtonStyle type="submit" btnText="Entrar" />
-                        <p>Não possui cadastro? <span onClick={this.props.goToRegisterPage}><u>Clique aqui.</u></span></p>
-=======
-                        <MyButton btnText="Entrar" />
-                        <p>Não possui cadastro? <span onClick={this.props.goToRegisterPage}>Clique aqui</span></p>
->>>>>>> fece9fee4d52534e93aa1a6989b52860710939a1
-                    </FormStyle>
-                </ContentWrapper>
+                <LogoFutureEats src={require("../../images/LogoPage/logo-future-eats-invert.png")} />
+                <h3>Entrar</h3>
+                <FormStyle onSubmit={this.handleSubmit}>
+                    <MyInput
+                        name="email"
+                        type="email"
+                        label="Email"
+                        placeholder="email@email.com"
+                        required={true}
+                        onChange={this.handleInputValue}
+                        value={this.state.form.email} />
+                    <MyPasswordInput
+                        name="password"
+                        type="password"
+                        label="senha"
+                        placeholder="Mínimo 6 caracteres"
+                        required={true}
+                        onChange={this.handleInputValue}
+                        value={this.state.form.password}
+                    />
+                    <MyButton btnText="Entrar" />
+                </FormStyle>
+                <p>Não possui cadastro? <span onClick={this.props.goToRegisterPage}>Clique aqui</span></p>
             </PageWrapper>
         );
     }

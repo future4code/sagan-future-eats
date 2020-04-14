@@ -1,13 +1,11 @@
 import React from "react";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
-import {StylesProvider} from '@material-ui/core/styles'
 import {
   MuiThemeProvider,
   createGenerateClassName,
   jssPreset,
   CssBaseline,
-  StylesProvider
 } from "@material-ui/core";
 import {StylesProvider} from '@material-ui/core/styles'
 import JssProvider from "react-jss/lib/JssProvider";
@@ -19,7 +17,6 @@ import { createStore, applyMiddleware, compose } from "redux";
 import { generateReducers } from "../../reducers";
 import { routerMiddleware } from "connected-react-router";
 import { createGlobalStyle } from 'styled-components'
-import { StylesProvider } from '@material-ui/core'
 
 const generateClassName = createGenerateClassName();
 const jss = create({

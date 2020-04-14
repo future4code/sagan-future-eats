@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import MyTextField from '../../components/input'
 
-import { PageWrapper, ContentWrapper, FormStyle } from '../style/styles'
+import { PageWrapper, FormStyle, LogoFutureEats } from '../style/styles'
 import MyButton from "../../components/material/Button";
+import { MyInput } from "../../components/material/Inputs";
 
 
 class RegisterPage extends Component {
@@ -43,47 +43,51 @@ class RegisterPage extends Component {
   render() {
     return (
       <PageWrapper>
-        <ContentWrapper>
+        <LogoFutureEats src={require("../../images/LogoPage/logo-future-eats-invert.png")} />
+        <h3>Cadastrar</h3>
           <FormStyle onSubmit={this.handleSubmit}>
-            <h3>Cadastrar</h3>
-            <MyTextField
+            <MyInput
               name="name"
               type="text"
-              label="Nome e Sobrenome"
+              label="Nome"
+              placeholder="Nome e Sobrenome"
               required={true}
               onChange={this.handleInputValue}
               value={this.state.form.name} />
-            <MyTextField
+            <MyInput
               name="email"
               type="email"
               label="Email"
+              placeholder="email@email.com"
               required={true}
               onChange={this.handleInputValue}
               value={this.state.form.email} />
-            <MyTextField
+            <MyInput
               name="cpf"
               type="text"
               label="CPF"
+              placeholder="000.000.000-00"
               required={true}
               onChange={this.handleInputValue}
               value={this.state.form.cpf} />
-            <MyTextField
+            <MyInput
               name="password"
               type="password"
               label="Senha"
+              placeholder="Mínimo 6 caracteres"
               required={true}
               onChange={this.handleInputValue}
               value={this.state.form.password} />
-            <MyTextField
+            <MyInput
               name="password"
               type="password"
-              label="Confirmar a senha anterior"
+              label="Confirmar"
+              placeholder="Confirme a senha anterior"
               required={true}
               onChange={this.handleInputValue}
               value={this.state.form.password} />
             <MyButton btnText='Criar' />
           </FormStyle>
-        </ContentWrapper>
       </PageWrapper>
     );
   }
