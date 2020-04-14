@@ -6,8 +6,8 @@ import RegisterPage from "../RegisterPage";
 import Profile from "../ProfilePage";
 
 export const routes = {
-  root:'/',
-  login:"/login",
+  // root:'/',
+  login:"/",
   register:"/register",
   addressregister: "/addressregister"
 };
