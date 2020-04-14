@@ -5,13 +5,16 @@ import LoginPage from "../LoginPage";
 import RegisterPage from "../RegisterPage";
 import Profile from "../ProfilePage";
 import FeedRestaurants from "../../containers/FeedRestaurants";
+import CartPage from "../CartPage";
 
 export const routes = {
   root:'/',
   login:"/login",
   register:"/register",
   addressregister: "/addressregister",
-  feedRestaurants: "/restaurants"
+  feedRestaurants: "/restaurants",
+  cart:'/cart',
+
 };
 
 function Router(props) {
@@ -23,6 +26,7 @@ function Router(props) {
         {/* <Route path={routes.addressregister} component={} /> */}
         <Route exact path={routes.root} component={Profile} />
         <Route exact path={routes.feedRestaurants} component={FeedRestaurants} />
+        <Route exact path={routes.cart} component={CartPage} />
       </Switch>
     </ConnectedRouter>
   );
