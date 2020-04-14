@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import LoginPage from "../LoginPage";
 import RegisterPage from "../RegisterPage";
 import Profile from "../ProfilePage";
+import RestaurantPage from '../../components/Restaurant Page'
 
 export const routes = {
   root:'/',

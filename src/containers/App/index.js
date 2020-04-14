@@ -7,6 +7,7 @@ import {
   jssPreset,
   CssBaseline
 } from "@material-ui/core";
+import {StylesProvider} from '@material-ui/core/styles'
 import JssProvider from "react-jss/lib/JssProvider";
 import { create } from "jss";
 import theme from "../../style/theme";
