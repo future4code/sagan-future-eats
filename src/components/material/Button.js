@@ -14,6 +14,10 @@ const StyledButton = styled(Button)`
   font-size:16px;
   letter-spacing: -0.39px;
   margin: 8px 0;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
 `
 
 export function MyButton(props) {

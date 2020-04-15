@@ -4,20 +4,20 @@ const initialState = {
     restaurantDetails: [],
 }
 
-const store = (state = initialState, action) =>{
+const store = (state = initialState, action) => {    
     switch (action.type) {
-        case 'SET_RESTAURANTS':
+        case 'SET_RESTAURANTS':                        
             return {
                 ...state,
-                restaurantList: action.payload.restaurants
+                restaurantList: action.payload.restaurantList
             }
         case 'SET_SELECTED_RESTAURANT':
-            return{
+            return {
                 ...state,
                 selectedRestaurantID: action.payload.restaurantID
             }
         case 'SET_RESTAURANT_DETAILS':
-            return{
+            return {
                 ...state,
                 restaurantDetails: action.payload.restaurantDetails
             }
