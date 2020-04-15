@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import {PageWrapper, FormStyle} from '../style/styles'
 import { MyInput } from "../../components/material/Inputs";
 import MyButton from "../../components/material/Button";
+import { MyPageTitle } from "../../components/pageTitleBar";
 
 
 class AddressRegister extends Component {
@@ -48,7 +49,7 @@ class AddressRegister extends Component {
   render() {
     return (
       <PageWrapper>
-        <h3>Meu Endereço</h3>
+        <MyPageTitle showBack pageTitle='Endereço'/>
           <FormStyle onSubmit={this.handleSubmit}>
             <MyInput
               name="street"
