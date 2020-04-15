@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { getRestaurants } from '../../actions/GetRestaurantsAction';
+import { MyPageTitle } from '../../components/pageTitleBar';
+import MyBottonNav from '../../components/material/BottomNav';
+
 import { Input, InputAdornment, Typography } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import CardsRestaurants from './CardsRestaurants';
-import MyBottonNav from '../../components/material/BottomNav';
-import { connect } from 'react-redux';
-import { getRestaurants } from '../../actions/GetRestaurantsAction';
 
 const InputSearch = styled(Input)`
   width: 328px;
@@ -16,7 +18,7 @@ const InputSearch = styled(Input)`
   padding:17px;
   `
 const MainWrapper = styled.div`
-    width: 380px;
+    width: 360px;
     height: 640px;       
 `
 const CardsWrapper = styled.div`
@@ -30,9 +32,6 @@ const FilterWrapper = styled.div`
 `
 
 class FeedRestaurants extends Component {
-    constructor(props) {
-        super(props)
-    }
 
     componentDidMount() {
         this.props.getRestaurants()
@@ -41,8 +40,7 @@ class FeedRestaurants extends Component {
     render() {
         return (
             <MainWrapper>
-                <Typography align="center" variant="h6">FutureEats</Typography>
-                <hr />
+                <MyPageTitle pageTitle={"FutureEats"} />                
                 <InputSearch
                     id="input-with-icon-adornment"
                     placeholder="Restaurante"
@@ -65,7 +63,6 @@ class FeedRestaurants extends Component {
         )
     }
 }
-
 
 const mapDispatchToProps = (dispatch) => {
     return {

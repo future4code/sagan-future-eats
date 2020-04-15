@@ -1,6 +1,5 @@
 const initialState = {
-    restaurantList: [],
-    selectedRestaurantID: "",
+    restaurantList: [],    
     restaurantDetails: [],
 }
 
@@ -11,16 +10,12 @@ const store = (state = initialState, action) => {
                 ...state,
                 restaurantList: action.payload.restaurantList
             }
-        case 'SET_SELECTED_RESTAURANT':
-            return {
+        case 'SET_RESTAURANT_DETAIL':
+            return{
                 ...state,
-                selectedRestaurantID: action.payload.restaurantID
+                restaurantDetails: action.payload.restaurant
             }
-        case 'SET_RESTAURANT_DETAILS':
-            return {
-                ...state,
-                restaurantDetails: action.payload.restaurantDetails
-            }
+
         default:
             return state;
     }
