@@ -45,5 +45,8 @@ export const SubTitle = styled.p`
 `
 export const Divisor = styled.div`
   width: calc(100% - 32px);
-  margin: auto;
+  margin: 8px auto ;
+  & hr{
+    margin: 0;
+  }
 `

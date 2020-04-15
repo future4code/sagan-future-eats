@@ -4,14 +4,14 @@ import { push } from "connected-react-router";
 import { connect } from "react-redux";
 import { routes } from "../../containers/Router";
 
-import MyBottonNav from '../../components/material/BottomNav'
-import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import { MyPageTitle } from '../../components/pageTitleBar';
+import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+import HystoryUnit from '../../components/history';
+import MyBottonNav from '../../components/material/BottomNav'
 
 import {
   PageWrapper, ProfileWrapper, AddressWrapper,
-  IconWrapper,
-  SubTitle, Divisor
+  IconWrapper, SubTitle, Divisor
 } from './styles'
 
 
@@ -41,6 +41,10 @@ export class Profile extends React.Component {
         </AddressWrapper>
         <SubTitle>Histórico de pedidos</SubTitle>
         <Divisor> <hr /> </Divisor>
+        <HystoryUnit />
+        <HystoryUnit />
+        <HystoryUnit />
+        <HystoryUnit />
         <MyBottonNav />
       </PageWrapper>
     )

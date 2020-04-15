@@ -38,7 +38,7 @@ const Wrapper = styled.span`
   position:fixed;
   bottom:0px;
   width:100%;
-  box-shadow: 0 0 2px;
+  box-shadow: 0 0 5px;
 `
 
 export class MyBottonNav extends React.Component {
