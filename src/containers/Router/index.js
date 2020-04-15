@@ -14,7 +14,7 @@ import AddressRegister from "../Autenticacao/Address";
 
 export const routes = {
   // root:'/',
-  login:"/",
+  login:"/login",
   register:"/register",
   addressregister: "/addressregister",
   feedRestaurants: "/restaurants",

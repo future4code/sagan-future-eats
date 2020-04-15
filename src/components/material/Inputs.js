@@ -6,10 +6,12 @@ import {
   OutlinedInput,
   InputLabel,
   InputAdornment,
-  IconButton
+  IconButton,
+  FormHelperText
 } from '@material-ui/core'
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
+
 
 
 const Wrapper = styled.div`
@@ -69,10 +71,10 @@ export function MyPasswordInput(props) {
 
   return (
     <Wrapper>
-      <FormControl required variant='outlined' fullWidth >
-        <InputLabel htmlFor="password">{props.label}</InputLabel>
+      <FormControl required variant='outlined' fullWidth error={props.error} >
+        <InputLabel htmlFor={props.id}>{props.label}</InputLabel>
         <OutlinedInputStyled
-          id="password"
+          id={props.id}
           name={props.name}
           type={values.showPassword ? 'text' : 'password'}
           value={props.value}
@@ -90,6 +92,7 @@ export function MyPasswordInput(props) {
           }
           labelWidth={70}
         />
+        {props.showHelper && <FormHelperText>Deve ser a mesma que a anterior.</FormHelperText>}
       </FormControl>
     </Wrapper>
   )
