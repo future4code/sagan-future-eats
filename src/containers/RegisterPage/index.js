@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-
-import { PageWrapper, FormStyle, LogoFutureEats } from '../style/styles'
+import { PageWrapper, FormStyle, LogoFutureEats, ContentWrapper } from '../style/styles'
+import MyTextField from '../../components/input'
+import { connect } from "react-redux";
+import {signup} from '../../actions/Auth'
 import MyButton from "../../components/material/Button";
 import { MyInput } from "../../components/material/Inputs";
-
 
 class RegisterPage extends Component {
   constructor(props) {
@@ -29,7 +30,8 @@ class RegisterPage extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.submitForm(this.state.form)
+    const {form} = this.state
+    this.props.signup(form.email, form.password, form.name, form.cpf)
     this.setState({
       form: {
         name: '',
@@ -92,7 +94,10 @@ class RegisterPage extends Component {
     );
   }
 }
-
-
-
-export default RegisterPage
+function mapDispatchToProps(dispatch) {
+  return {
+    
+    signup: (email, password, name, cpf) => dispatch(signup(email, password, name, cpf)),
+  }
+} 
+export default connect(null, mapDispatchToProps)(RegisterPage)
