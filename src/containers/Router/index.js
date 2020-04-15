@@ -1,15 +1,15 @@
 import React from "react";
 import { ConnectedRouter } from "connected-react-router";
 import { Switch, Route } from "react-router-dom";
-import LoginPage from "../LoginPage";
-import RegisterPage from "../RegisterPage";
+import LoginPage from "../Autenticacao/Login";
+import RegisterPage from "../Autenticacao/RegisterProfile";
 import Profile from "../ProfilePage";
-import ProfileEdit from '../ProfilePage/editProfile'
-import AddressEdit from '../ProfilePage/editAddress'
+import ProfileEdit from '../ProfilePage/editProfile';
+import AddressEdit from '../ProfilePage/editAddress';
 import RestaurantPage from '../../components/Restaurant Page'
 import FeedRestaurants from "../../containers/FeedRestaurants";
 import CartPage from "../CartPage";
-import AddressRegister from "../AddressRegister";
+import AddressRegister from "../Autenticacao/Address";
 
 
 export const routes = {

@@ -1,23 +1,10 @@
 import React, { Component } from "react";
-
-
-
 import { MyInput } from "../../components/material/Inputs";
 import MyButton from "../../components/material/Button";
 import { MyPageTitle } from "../../components/pageTitleBar";
-import styled from 'styled-components'
+import { PageWrapper, FormStyle} from "./style"
 
-const PageWrapper = styled.div`
-  width: 100%;
-  height: calc(100vh - 16px);
-  display:flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-`
-const FormStyle = styled.form`
-  width: 100%;
-`
+
 
 class AddressRegister extends Component {
   constructor(props) {
@@ -61,7 +48,7 @@ class AddressRegister extends Component {
   render() {
     return (
       <PageWrapper>
-        <MyPageTitle showBack pageTitle='Endereço'/>
+        <MyPageTitle showBack pageTitle='Meu Endereço'/>
           <FormStyle onSubmit={this.handleSubmit}>
             <MyInput
               name="street"
