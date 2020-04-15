@@ -5,12 +5,13 @@ const initialState = {
 
 const store = (state = initialState, action) => {    
     switch (action.type) {
-        case 'SET_RESTAURANTS':                        
+        case 'SET_RESTAURANTS':
+                                    
             return {
                 ...state,
                 restaurantList: action.payload.restaurantList
             }
-        case 'SET_RESTAURANT_DETAIL':
+        case 'SET_RESTAURANT_DETAIL':            
             return{
                 ...state,
                 restaurantDetails: action.payload.restaurant

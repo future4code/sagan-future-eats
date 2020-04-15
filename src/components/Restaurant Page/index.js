@@ -1,57 +1,77 @@
 import React, { Component } from "react";
 import * as RPS from './RestaurantPageStyles'
-import { IconButton, Divider } from "@material-ui/core";
+import { IconButton, Divider, CardMedia } from "@material-ui/core";
+import {connect} from 'react-redux'
+import { push } from "connected-react-router";
+import { routes } from '../../containers/Router';
 
 export class RestaurantPage extends Component {
 
+    componentDidMount(){
+        if(!this.props.restaurantDetails || !this.props.restaurantDetails.id){
+            this.props.goToFeed()
+        }
+    }
+
     render() {
-        return (
+        const { restaurantDetails } = this.props;
+        return (            
             <RPS.Restaurant>
                 <RPS.TopBar>
-                    <IconButton><img src={require("../../images/BackButton/back.png")} /></IconButton>
+                    <IconButton><img src={require("../../images/BackButton/back.png")} alt="Icone do Botão" /></IconButton>
                     <RPS.Title><RPS.TitleContend>Restaurante</RPS.TitleContend></RPS.Title>
                 </RPS.TopBar>
-                <RPS.ImageLogoRestaurant><img src={require("../../images/hamburguers/image.png")} /></RPS.ImageLogoRestaurant>
+                <RPS.ImageLogoRestaurant><img src={restaurantDetails.logoUrl} alt="Logo" /></RPS.ImageLogoRestaurant>
                 <RPS.RestaurantData>
-                    <RPS.RestaurantName>Bullguer Vila Madalena</RPS.RestaurantName>
-                    <RPS.RestaurantType>Burger</RPS.RestaurantType>
+                    <RPS.RestaurantName>{restaurantDetails.name}</RPS.RestaurantName>
+                    <RPS.RestaurantType>{restaurantDetails.category}</RPS.RestaurantType>
                     <RPS.RestaurantDataMid>
-                        <RPS.RestaurantTimeDeliver>50 - 60 min</RPS.RestaurantTimeDeliver>
-                        <RPS.RestaurantFreight>Frete R$6,00</RPS.RestaurantFreight>
+                        <RPS.RestaurantTimeDeliver>{restaurantDetails.deliveryTime + " min"}</RPS.RestaurantTimeDeliver>
+                        <RPS.RestaurantFreight>{"Frete R$" +  restaurantDetails.shipping.toFixed(2)}</RPS.RestaurantFreight>
                     </RPS.RestaurantDataMid>
-                    <RPS.RestaurantAdress>R. Fradique Coutinho, 1136 - Vila Madalena</RPS.RestaurantAdress>
+                    <RPS.RestaurantAdress>{restaurantDetails.address}</RPS.RestaurantAdress>
                 </RPS.RestaurantData>
                 <RPS.DividerTitle>Principal</RPS.DividerTitle>
-                <Divider />
-
-                <RPS.RestaurantItem>
-                    <RPS.RestaurantItemImage src={require("../../images/hamburguers/image.png")}></RPS.RestaurantItemImage>
-                    <RPS.RestaurantItemName>Bullguer</RPS.RestaurantItemName>
-                    <RPS.RestaurantItemIngredients>Pão, carne. queijo, picles e molho.</RPS.RestaurantItemIngredients>
-                    <RPS.RestaurantItemPrice>R$20,00</RPS.RestaurantItemPrice>
-                    <RPS.RestaurantButtomAddIten><RPS.RestaurantButtomAddItenText>Adicionar</RPS.RestaurantButtomAddItenText></RPS.RestaurantButtomAddIten>
-                </RPS.RestaurantItem>
-                <RPS.RestaurantItem>
-                    <RPS.RestaurantItemImage src={require("../../images/hamburguers/mao-santa-burguer-1531851949973-v-2-900-x-506.png")}></RPS.RestaurantItemImage>
-                    <RPS.RestaurantItemName>Stencil</RPS.RestaurantItemName>
-                    <RPS.RestaurantItemIngredients>Pão, carne, queijo, cebola roxa, tomate, alface e molho.</RPS.RestaurantItemIngredients>
-                    <RPS.RestaurantItemPrice>R$23,00</RPS.RestaurantItemPrice>
-                    <RPS.RestaurantCountItens><RPS.RestaurantCounterItensText>2</RPS.RestaurantCounterItensText></RPS.RestaurantCountItens>
-                    <RPS.RestaurantButtomSubIten><RPS.RestaurantButtomSubItenText>Remover</RPS.RestaurantButtomSubItenText></RPS.RestaurantButtomSubIten>
-                </RPS.RestaurantItem>
-
+                <Divider />           
+                {restaurantDetails.products.map(product => {
+                    if(product.category !== "Acompanhamento"){
+                        return(                        
+                            <RPS.RestaurantItem key={product.id}>
+                                <RPS.RestaurantItemImage src={product.photoUrl} ></RPS.RestaurantItemImage>
+                                <RPS.RestaurantItemName>{product.name}</RPS.RestaurantItemName>
+                                <RPS.RestaurantItemIngredients>{product.description}</RPS.RestaurantItemIngredients>
+                                <RPS.RestaurantItemPrice>{"R$" + product.price.toFixed(2)}</RPS.RestaurantItemPrice>
+                                <RPS.RestaurantButtomAddIten><RPS.RestaurantButtomAddItenText>Adicionar</RPS.RestaurantButtomAddItenText></RPS.RestaurantButtomAddIten>
+                            </RPS.RestaurantItem>    
+                        )
+                    }                                                        
+                })}                
                 <RPS.DividerTitle>Acompanhamentos</RPS.DividerTitle>
                 <Divider />
-                <RPS.RestaurantItem>
-                    <RPS.RestaurantItemImage src={require("../../images/sides/batata.jpg")}></RPS.RestaurantItemImage>
-                    <RPS.RestaurantItemName>Cheese Fries</RPS.RestaurantItemName>
-                    <RPS.RestaurantItemIngredients>Porção de fritas temperada com páprica e queijo derretido.</RPS.RestaurantItemIngredients>
-                    <RPS.RestaurantItemPrice>R$15,00</RPS.RestaurantItemPrice>
-                    <RPS.RestaurantButtomAddIten><RPS.RestaurantButtomAddItenText>Adicionar</RPS.RestaurantButtomAddItenText></RPS.RestaurantButtomAddIten>
-                </RPS.RestaurantItem>
+                {restaurantDetails.products.map(product => {
+                    if(product.category === "Acompanhamento"){
+                        return(                        
+                            <RPS.RestaurantItem key={product.id}>
+                                <RPS.RestaurantItemImage src={product.photoUrl}></RPS.RestaurantItemImage>
+                                <RPS.RestaurantItemName>{product.name}</RPS.RestaurantItemName>
+                                <RPS.RestaurantItemIngredients>{product.description}</RPS.RestaurantItemIngredients>
+                                <RPS.RestaurantItemPrice>{"R$" + product.price.toFixed(2)}</RPS.RestaurantItemPrice>
+                                <RPS.RestaurantButtomAddIten><RPS.RestaurantButtomAddItenText>Adicionar</RPS.RestaurantButtomAddItenText></RPS.RestaurantButtomAddIten>
+                            </RPS.RestaurantItem>    
+                        )
+                    }                                                   
+                })}
             </RPS.Restaurant>
-
-
         )
     }
-} export default RestaurantPage
+}
+
+const mapStateToProps = (state) =>({
+    restaurantDetails : state.store.restaurantDetails
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    goToFeed: () => dispatch(push(routes.feedRestaurants))
+  })
+
+export default connect(mapStateToProps, mapDispatchToProps)(RestaurantPage)
