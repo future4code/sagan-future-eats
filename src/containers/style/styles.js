@@ -18,10 +18,10 @@ export const ContentWrapper = styled.div`
   align-items:center;
 `
 export const FormStyle = styled.form`
-  width: 35%;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  align-items:center;
+  width: 100%;
+`
+export const LogoFutureEats = styled.img`
+  padding: 15px;
+
 `
 

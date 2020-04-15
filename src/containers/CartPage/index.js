@@ -1,4 +1,4 @@
-/* import React, { Component } from "react";
+import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
 
@@ -73,4 +73,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(CartPage); */
+export default connect(null, mapDispatchToProps)(CartPage);
