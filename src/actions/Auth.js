@@ -36,8 +36,14 @@ export const signup = (email, password, name, cpf) => async (dispatch) => {
     }
 
     try{
-        console.log(signupData)
-        await axios.post(`${baseURL}/signup`, signupData);
+       const response =  await axios.post(`${baseURL}/signup`, signupData);
+
+        const auth = response.data.user;
+        const token = response.data.token
+
+        window.localStorage.setItem("auth", JSON.stringify(auth))
+        window.localStorage.setItem("token", token)
+
         alert('Conta criada com sucesso!')
     }
     catch(error){

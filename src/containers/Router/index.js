@@ -21,7 +21,8 @@ export const routes = {
   cart:'/cart',
   profile:'/profile',
   editProfile:'/profile/edit',
-  editAddress:'/profile/editAddress'
+  editAddress:'/profile/editAddress',
+  restaurantPage: '/restaurant'
 };
 
 function Router(props) {
@@ -36,6 +37,7 @@ function Router(props) {
         <Route exact path={routes.profile} component={Profile} />
         <Route exact path={routes.editProfile} component={ProfileEdit} />
         <Route exact path={routes.editAddress} component={AddressEdit} />
+        <Route exact path={routes.restaurantPage} component={RestaurantPage} />
       </Switch>
     </ConnectedRouter>
   );
