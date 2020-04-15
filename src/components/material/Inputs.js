@@ -43,7 +43,7 @@ export function MyInput(props) {
         type={props.type}
         value={props.value}
         onChange={props.onChange}
-        required
+        required={props.required}
         fullWidth
         InputLabelProps={{
           shrink: true,
@@ -73,6 +73,7 @@ export function MyPasswordInput(props) {
         <InputLabel htmlFor="password">{props.label}</InputLabel>
         <OutlinedInputStyled
           id="password"
+          name={props.name}
           type={values.showPassword ? 'text' : 'password'}
           value={props.value}
           onChange={props.onChange}

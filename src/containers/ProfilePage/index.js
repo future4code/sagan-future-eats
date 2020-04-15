@@ -4,9 +4,6 @@ import MyBottonNav from '../../components/material/BottomNav'
 import MyButton from '../../components/material/Button'
 import { MyInput, MyPasswordInput } from '../../components/material/Inputs'
 
-
-   
-
 const PageWrapper = styled.div`
   width: 100%;
 `
