@@ -1,11 +1,23 @@
 import React, { Component } from "react";
 
 
-import {PageWrapper, FormStyle} from '../style/styles'
+
 import { MyInput } from "../../components/material/Inputs";
 import MyButton from "../../components/material/Button";
 import { MyPageTitle } from "../../components/pageTitleBar";
+import styled from 'styled-components'
 
+const PageWrapper = styled.div`
+  width: 100%;
+  height: calc(100vh - 16px);
+  display:flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+`
+const FormStyle = styled.form`
+  width: 100%;
+`
 
 class AddressRegister extends Component {
   constructor(props) {

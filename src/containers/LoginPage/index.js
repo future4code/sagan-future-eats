@@ -4,11 +4,25 @@ import { push } from 'connected-react-router';
 import {login} from '../../actions/Auth'
 import { routes } from '../Router'
 
-import { PageWrapper, FormStyle, LogoFutureEats } from '../style/styles'
+
 import MyButton from "../../components/material/Button";
 import { MyPasswordInput, MyInput } from "../../components/material/Inputs";
+import styled from 'styled-components'
 
-
+const PageWrapper = styled.div`
+  width: 100%;
+  height: calc(100vh - 16px);
+  display:flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+`
+const FormStyle = styled.form`
+  width: 100%;
+`
+const LogoFutureEats = styled.img`
+  padding: 15px;
+`
 
 class LoginPage extends Component {
     constructor(props) {
