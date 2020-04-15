@@ -49,7 +49,7 @@ export class MyBottonNav extends React.Component {
     }
   }
 
-  onNavChange = (e, newValue) => {
+/*   onNavChange = (e, newValue) => {
     this.setState({
       value: newValue
     })
@@ -67,7 +67,7 @@ export class MyBottonNav extends React.Component {
         this.props.goToHomePage()
         break;
     }
-  }
+  } */
 
   render() {
     return (
@@ -83,9 +83,9 @@ export class MyBottonNav extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  goToHomePage: () => dispatch(push(routes.home)),
+ /*  goToHomePage: () => dispatch(push(routes.home)),
   goToCartPage: () => dispatch(push(routes.cart)),
-  goToProfilePage: () => dispatch(push(routes.profile)),
+  goToProfilePage: () => dispatch(push(routes.profile)), */
 })
 
 export default connect(null, mapDispatchToProps)(MyBottonNav)

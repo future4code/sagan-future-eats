@@ -1,28 +1,56 @@
 import React from 'react'
-import styled from 'styled-components'
-import MyBottonNav from '../../components/material/BottomNav'
-import MyButton from '../../components/material/Button'
-import { MyInput, MyPasswordInput } from '../../components/material/Inputs'
 
-const PageWrapper = styled.div`
-  width: 100%;
-`
+import { push } from "connected-react-router";
+import { connect } from "react-redux";
+import { routes } from "../../containers/Router";
+
+import MyBottonNav from '../../components/material/BottomNav'
+import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+import { MyPageTitle } from '../../components/pageTitleBar';
+
+import {
+  PageWrapper, ProfileWrapper, AddressWrapper,
+  IconWrapper,
+  SubTitle, Divisor
+} from './styles'
+
 
 export class Profile extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props)
   }
 
-  render(){
-    return(
+  render() {
+    return (
       <PageWrapper>
-        <MyInput label='Endereço' placeholder="Av. / Rua" />
-        <MyPasswordInput label='Senha' />
-        <MyButton btnText='Confirmar' />
+        <MyPageTitle pageTitle='Meu perfil' />
+        <ProfileWrapper>
+          <p>Bruna Oliveira</p>
+          <p>bruna_o@gmail.com</p>
+          <p>333.333.333-33</p>
+          <span onClick={this.props.goToEditProfile}>
+            <EditOutlinedIcon />
+          </span>
+        </ProfileWrapper>
+        <AddressWrapper>
+          <p>Endereço cadastrado</p>
+          <p>Rua Alessandra Vieira, 42 - Santana</p>
+          <IconWrapper onClick={this.props.goToEditAddress}>
+            <EditOutlinedIcon />
+          </IconWrapper>
+        </AddressWrapper>
+        <SubTitle>Histórico de pedidos</SubTitle>
+        <Divisor> <hr /> </Divisor>
         <MyBottonNav />
       </PageWrapper>
     )
   }
 }
 
-export default Profile
+const mapDispatchToProps = (dispatch) => ({
+  goToEditProfile: () => dispatch(push(routes.editProfile)),
+  goToEditAddress: () => dispatch(push(routes.editAddress)),
+
+})
+
+export default connect(null, mapDispatchToProps)(Profile)

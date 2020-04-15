@@ -22,17 +22,15 @@ export const routes = {
   profile:'/profile',
   editProfile:'/profile/edit',
   editAddress:'/profile/editAddress'
-
 };
 
 function Router(props) {
   return (
     <ConnectedRouter history={props.history}>
-      <Switch>
+     <Switch>
         <Route exact path={routes.login} component={LoginPage} />
         <Route exact path={routes.register} component={RegisterPage} />
-        <Route path={routes.addressregister} component={AddressRegister} />
-        <Route exact path={routes.root} component={Profile} />
+        <Route exact path={routes.addressregister} component={AddressRegister} />
         <Route exact path={routes.feedRestaurants} component={FeedRestaurants} />
         <Route exact path={routes.cart} component={CartPage} />
         <Route exact path={routes.profile} component={Profile} />

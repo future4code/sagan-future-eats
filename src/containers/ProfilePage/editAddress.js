@@ -1,13 +1,8 @@
 import React from 'react'
-import styled from 'styled-components'
+import { PageWrapper } from './styles'
 import MyButton from '../../components/material/Button'
 import { MyInput } from '../../components/material/Inputs'
 import MyPageTitle from '../../components/pageTitleBar'
-
-
-const PageWrapper = styled.div`
-  width: 100%;
-`
 
 export class AddressEdit extends React.Component {
   constructor(props) {

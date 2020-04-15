@@ -39,7 +39,7 @@ const PageTitle = styled.h3`
 export function MyPageTitle(props) {
   return (
     <Wrapper>
-      <IconWrapper onClick={() => this.props.goBack()}>
+      <IconWrapper onClick={props.goBack}>
         {props.showBack && <ArrowBackIosIcon fontSize="small" />}
       </IconWrapper>
       <PageTitle > {props.pageTitle} </PageTitle>
