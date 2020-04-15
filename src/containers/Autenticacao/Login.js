@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
-import {login} from '../../actions/Auth'
+import {login} from '../../actions/profile'
 import { routes } from '../Router'
 
 
@@ -35,7 +35,7 @@ class LoginPage extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
         const {form} = this.state
-        this.props.login(form.email, form.password)
+        this.props.login(form)
         this.setState({
             form: {
                 password: '',
@@ -60,7 +60,7 @@ class LoginPage extends Component {
                         value={this.state.form.email} />
                     <MyPasswordInput
                         name="password"
-                        type="password"
+                        id="password"
                         label="senha"
                         placeholder="Mínimo 6 caracteres"
                         required={true}
@@ -78,7 +78,7 @@ class LoginPage extends Component {
 const mapDispatchToProps = dispatch => {
     return {
         goToRegisterPage: () => dispatch(push(routes.register)),
-        login: (email, password) => dispatch(login(email, password)),
+        login: (form) => dispatch(login(form)),
     }
 }
 

@@ -16,6 +16,7 @@ export const login = (form) => async (dispatch) => {
     dispatch(setProfileDetails(profileDetails))
 
     dispatch(push(routes.feedRestaurants))
+    
   }
   catch (error) {
     console.error(error)
@@ -25,15 +26,16 @@ export const login = (form) => async (dispatch) => {
 
 export const signup = (form) => async (dispatch) => {
   try {
-    const response = await axios.post(`${baseURL}/signup`, form);
+    // const response = await axios.post(`${baseURL}/signup`, form);
 
-    const token = response.data.token
-    window.localStorage.setItem("token", token)
+    // const token = response.data.token
+    // window.localStorage.setItem("token", token)
 
-    const profileDetails = response.data.user;
-    dispatch(setProfileDetails(profileDetails))
+    // const profileDetails = response.data.user;
+    // dispatch(setProfileDetails(profileDetails))
 
-    dispatch(push(routes.addressregister))
+    // dispatch(push(routes.addressregister))
+    console.log(form)
   }
   catch (error) {
     console.error(error)

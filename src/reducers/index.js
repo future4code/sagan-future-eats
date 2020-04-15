@@ -7,6 +7,6 @@ export const generateReducers = history =>
   combineReducers({
     router: connectRouter(history),
     store,
-    profile: profileReducers
+    profile: profileReducer
     // Outros reducers aqui
   });
