@@ -1,6 +1,6 @@
 import styled from "styled-components";
 export const Restaurant = styled.div`
-  width: 100%;
+  width:100%;
   display:flex;
   flex-direction: column;
   margin-bottom: 16px;
@@ -30,7 +30,7 @@ export const TitleContend = styled.div`
   letter-spacing: -0.39px;
   color: #000000;
  `
-export const ImageLogoRestaurant = styled.div`
+export const ImageLogoRestaurant = styled.div`  
   height: 120px;
   object-fit: contain;
   display:flex;
