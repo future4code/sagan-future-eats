@@ -7,11 +7,12 @@ import Profile from "../ProfilePage";
 import RestaurantPage from '../../components/Restaurant Page'
 import FeedRestaurants from "../../containers/FeedRestaurants";
 import CartPage from "../CartPage";
+import AddressRegister from "../AddressRegister";
 
 
 export const routes = {
-  root:'/',
-  login:"/login",
+  // root:'/',
+  login:"/",
   register:"/register",
   addressregister: "/addressregister",
   feedRestaurants: "/restaurants",
@@ -25,8 +26,8 @@ function Router(props) {
       <Switch>
         <Route exact path={routes.login} component={LoginPage} />
         <Route exact path={routes.register} component={RegisterPage} />
-        {/* <Route path={routes.addressregister} component={} /> */}
-        <Route exact path={routes.root} component={LoginPage} />
+        <Route path={routes.addressregister} component={AddressRegister} />
+        <Route exact path={routes.root} component={Profile} />
         <Route exact path={routes.feedRestaurants} component={FeedRestaurants} />
         <Route exact path={routes.cart} component={CartPage} />
       </Switch>
