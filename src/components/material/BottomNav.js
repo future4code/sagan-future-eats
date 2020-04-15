@@ -38,7 +38,7 @@ const Wrapper = styled.span`
   position:fixed;
   bottom:0px;
   width:100%;
-  box-shadow: 0 0 2px;
+  box-shadow: 0 0 5px;
 `
 
 export class MyBottonNav extends React.Component {
@@ -83,7 +83,7 @@ export class MyBottonNav extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  goToHomePage: () => dispatch(push(routes.home)),
+  goToHomePage: () => dispatch(push(routes.feedRestaurants)),
   goToCartPage: () => dispatch(push(routes.cart)),
   goToProfilePage: () => dispatch(push(routes.profile)),
 })
