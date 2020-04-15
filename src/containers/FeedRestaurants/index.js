@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import { Input, InputAdornment, Typography } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import CardsRestaurants from './CardsRestaurants';
+import MyBottonNav from '../../components/material/BottomNav';
+import { connect } from 'react-redux';
+import { getRestaurants } from '../../actions/GetRestaurantsAction';
 
 const InputSearch = styled(Input)`
   width: 328px;
@@ -11,25 +14,29 @@ const InputSearch = styled(Input)`
   border: solid 1px #b8b8b8;
   margin:0 16px;
   padding:17px;
-`
-
+  `
 const MainWrapper = styled.div`
     width: 380px;
     height: 640px;       
 `
-
 const CardsWrapper = styled.div`
   margin:8px 16px;
   border-radius: 8px;  
 `
-
 const FilterWrapper = styled.div`
     margin:8px;
     display:flex;
     justify-content:space-evenly;
 `
 
-export default class FeedRestaurants extends Component {
+class FeedRestaurants extends Component {
+    constructor(props) {
+        super(props)
+    }
+
+    componentDidMount() {
+        this.props.getRestaurants()
+    }
 
     render() {
         return (
@@ -52,10 +59,18 @@ export default class FeedRestaurants extends Component {
                 </FilterWrapper>
                 <CardsWrapper>
                     <CardsRestaurants />
-                    <CardsRestaurants />
-                    <CardsRestaurants />
                 </CardsWrapper>
+                <MyBottonNav />
             </MainWrapper>
         )
     }
 }
+
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getRestaurants: () => dispatch(getRestaurants())
+    }
+};
+
+export default connect(null, mapDispatchToProps)(FeedRestaurants)

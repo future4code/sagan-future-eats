@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
 
 import { routes } from '../Router'
-import ButtonStyle from '../../components/button'
-import MyTextField from '../../components/input'
+
 
 import * as CPS from './CartPageStyles'
+import { MyBottonNav } from "../../components/material/BottomNav";
 
 
 class CartPage extends Component {
@@ -53,15 +53,8 @@ class CartPage extends Component {
                     <p>Dinheiro (INSERIR TOGGLE A ESQUERDA)</p>
                     <p>Cartao (INSERIR TOGGLE A ESQUERDA)</p>
                 </CPS.PayMethodContainer>
-
                 <CPS.ConfirmButton>Confirmar</CPS.ConfirmButton>
-
-                <CPS.Footer>
-                    <CPS.FooterIcon src="https://cdn3.iconfinder.com/data/icons/streamline-icon-set-free-pack/48/Streamline-18-512.png"/>
-                    <CPS.FooterIcon src="https://cdn3.iconfinder.com/data/icons/streamline-icon-set-free-pack/48/Streamline-18-512.png"/>
-                    <CPS.FooterIcon src="https://cdn3.iconfinder.com/data/icons/streamline-icon-set-free-pack/48/Streamline-18-512.png"/>
-                </CPS.Footer>
-
+                <MyBottonNav />
             </CPS.PageWrapper>
         );
     }
