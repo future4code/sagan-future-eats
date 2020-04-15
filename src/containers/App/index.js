@@ -5,7 +5,7 @@ import {
   MuiThemeProvider,
   createGenerateClassName,
   jssPreset,
-  CssBaseline,
+  CssBaseline
 } from "@material-ui/core";
 import { StylesProvider } from '@material-ui/core/styles'
 import JssProvider from "react-jss/lib/JssProvider";
