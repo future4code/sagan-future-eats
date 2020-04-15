@@ -6,7 +6,6 @@ import { routes } from '../Router'
 
 
 import * as CPS from './CartPageStyles'
-import { MyBottonNav } from "../../components/material/BottomNav";
 
 
 class CartPage extends Component {
@@ -53,8 +52,15 @@ class CartPage extends Component {
                     <p>Dinheiro (INSERIR TOGGLE A ESQUERDA)</p>
                     <p>Cartao (INSERIR TOGGLE A ESQUERDA)</p>
                 </CPS.PayMethodContainer>
+
                 <CPS.ConfirmButton>Confirmar</CPS.ConfirmButton>
-                <MyBottonNav />
+
+                <CPS.Footer>
+                    <CPS.FooterIcon src="https://cdn3.iconfinder.com/data/icons/streamline-icon-set-free-pack/48/Streamline-18-512.png"/>
+                    <CPS.FooterIcon src="https://cdn3.iconfinder.com/data/icons/streamline-icon-set-free-pack/48/Streamline-18-512.png"/>
+                    <CPS.FooterIcon src="https://cdn3.iconfinder.com/data/icons/streamline-icon-set-free-pack/48/Streamline-18-512.png"/>
+                </CPS.Footer>
+
             </CPS.PageWrapper>
         );
     }
