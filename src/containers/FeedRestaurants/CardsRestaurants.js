@@ -1,10 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
+import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@material-ui/core';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
@@ -36,7 +32,7 @@ function CardsRestaurants (props) {
       <div>
       {props.restaurantList.map(restaurant =>{
         return(
-          <CardRestaurant className={classes.root}>
+          <CardRestaurant className={classes.root} key={restaurant.id}>
           <CardActionArea>
             <CardMedia
               className={classes.media}

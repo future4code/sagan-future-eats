@@ -4,40 +4,25 @@ import { routes } from '../Router';
 
 const baseURL = 'https://us-central1-missao-newton.cloudfunctions.net/futureEats'
 
-export const setSelectedRestaurantIDAndPush = (restaurantID) => async (dispatch) => {
-    // essa linha serve para armazenar no store o ID do restaurante especificado 
-    //dispatch(setSelectedRestaurant(restaurantID))
-
-    // o intuito eh que com a linha na store, quando o usuario entrar na nova pagina, um componentDidMount
-    // vai conseguir dar um get nas informacoes do restaurante a partir do ID na store
-
-    // essa linha serve para enviar o usuario para a pagina do restaurante especificado 
-    //dispatch(push(routes.RestaurantPage))
-}
-
-const setSelectedRestaurant = (restaurantID) => ({
-	type: 'SET_SELECTED_RESTAURANT',
-	payload: {
-		restaurantID
+export const setRestaurantDetail = (restaurant) => ({
+	type:'SET_RESTAURANT_DETAIL',
+	paylod:{
+		restaurant
 	}
-})
+});
 
-const setRestaurantDetails = (restaurantDetails) => ({
-	type: 'SET_RESTAURANT_DETAILS',
-	payload: {
-		restaurantDetails
-	}
-})
+export const fetchRestaurant = (id) => async(dispatch, getState) => {
+	const token = "";
+	const response = await axios.get(`${baseURL}/restaurants/${id}`,{
+		headers:{auth: token}
+	});
+	dispatch(setRestaurant(response.data.restaurant))
+};
 
-export const getRestaurantDetails = (restaurantID) => async (dispatch) => {
-	try {
-		const response = await axios.get(`${baseURL}/restaurants/${restaurantID}`) 
+export const goToRestaurantDetail = restId => async(dispatch) =>{
+	await dispatch(fetchRestaurant(restId))
+	dispatch(push(routes.restaurant))
+};
 
-		// { headers: { auth: localStorage.getItem("token") } })
 
-		// dispatch(setRestaurantDetails(response.data))
-	} catch (error) {
-		console.error(error)
-		alert('Erro ao tentar adquirir detalhes sobre o restaurante')
-	}
-}
+
