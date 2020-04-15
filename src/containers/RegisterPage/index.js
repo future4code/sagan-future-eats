@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import {signup} from '../../actions/Auth'
 import MyButton from "../../components/material/Button";
 import { MyInput } from "../../components/material/Inputs";
+import { MyPageTitle } from "../../components/pageTitleBar";
 
 class RegisterPage extends Component {
   constructor(props) {
@@ -45,8 +46,8 @@ class RegisterPage extends Component {
   render() {
     return (
       <PageWrapper>
+        <MyPageTitle showBack pageTitle='Cadastrar'/>
         <LogoFutureEats src={require("../../images/LogoPage/logo-future-eats-invert.png")} />
-        <h3>Cadastrar</h3>
           <FormStyle onSubmit={this.handleSubmit}>
             <MyInput
               name="name"
