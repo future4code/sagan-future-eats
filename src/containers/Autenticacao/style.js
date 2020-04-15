@@ -8,20 +8,9 @@ export const PageWrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
 `
-export const ContentWrapper = styled.div`
-  width: 100%;
-  max-width: 900px;
-  height: 100%;
-  background-color: white;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-`
 export const FormStyle = styled.form`
   width: 100%;
 `
 export const LogoFutureEats = styled.img`
   padding: 15px;
-
 `
-

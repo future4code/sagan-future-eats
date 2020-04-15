@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { PageWrapper, FormStyle, LogoFutureEats, ContentWrapper } from '../style/styles'
-import MyTextField from '../../components/input'
 import { connect } from "react-redux";
 import {signup} from '../../actions/Auth'
 import MyButton from "../../components/material/Button";
 import { MyInput } from "../../components/material/Inputs";
 import { MyPageTitle } from "../../components/pageTitleBar";
+import { PageWrapper, FormStyle, LogoFutureEats} from "./style"
+
+
 
 class RegisterPage extends Component {
   constructor(props) {

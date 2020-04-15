@@ -4,9 +4,10 @@ import { push } from 'connected-react-router';
 import {login} from '../../actions/Auth'
 import { routes } from '../Router'
 
-import { PageWrapper, FormStyle, LogoFutureEats } from '../style/styles'
+
 import MyButton from "../../components/material/Button";
 import { MyPasswordInput, MyInput } from "../../components/material/Inputs";
+import { PageWrapper, FormStyle, LogoFutureEats} from "./style"
 
 
 
