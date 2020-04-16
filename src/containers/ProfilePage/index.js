@@ -1,5 +1,4 @@
 import React from 'react'
-
 import { push } from "connected-react-router";
 import { connect } from "react-redux";
 import { routes } from "../../containers/Router";
@@ -11,8 +10,11 @@ import MyBottonNav from '../../components/material/BottomNav'
 
 import {
   PageWrapper, ProfileWrapper, AddressWrapper,
-  IconWrapper, SubTitle, Divisor
+  IconWrapper, SubTitle, Divisor, ParagraphWrapper,
+  InfoWrapper
 } from './styles'
+
+import { getProfile } from '../../actions/profile';
 
 
 export class Profile extends React.Component {
@@ -20,21 +22,37 @@ export class Profile extends React.Component {
     super(props)
   }
 
+  componentDidMount() {
+    if (localStorage.getItem('token') === null) {
+      //this.props.goToLogin()
+    }
+    else {
+      this.props.profile || this.props.getProfileDetails()
+    }
+  }
+
   render() {
+    const { profile } = this.props
     return (
       <PageWrapper>
         <MyPageTitle pageTitle='Meu perfil' />
         <ProfileWrapper>
-          <p>Bruna Oliveira</p>
-          <p>bruna_o@gmail.com</p>
-          <p>333.333.333-33</p>
+          {profile &&
+            <InfoWrapper>
+              <p>{profile.name}</p>
+              <p>{profile.email}</p>
+              <p>{profile.cpf}</p>
+            </InfoWrapper> 
+          }
           <span onClick={this.props.goToEditProfile}>
             <EditOutlinedIcon />
           </span>
         </ProfileWrapper>
         <AddressWrapper>
-          <p>Endereço cadastrado</p>
-          <p>Rua Alessandra Vieira, 42 - Santana</p>
+          <ParagraphWrapper>
+            <p>Endereço cadastrado</p>
+            {profile && <p>{profile.address}</p>}
+          </ParagraphWrapper>
           <IconWrapper onClick={this.props.goToEditAddress}>
             <EditOutlinedIcon />
           </IconWrapper>
@@ -46,15 +64,21 @@ export class Profile extends React.Component {
         <HystoryUnit />
         <HystoryUnit />
         <MyBottonNav />
-      </PageWrapper>
+      </PageWrapper >
     )
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  goToEditProfile: () => dispatch(push(routes.editProfile)),
-  goToEditAddress: () => dispatch(push(routes.editAddress)),
-
+const mapStateToProps = (state) => ({
+  profile: state.profile.profileDetails,
+  history: state.profile.profileOrderHistory
 })
 
-export default connect(null, mapDispatchToProps)(Profile)
+const mapDispatchToProps = (dispatch) => ({
+  goToLogin: () => dispatch(push(routes.login)),
+  goToEditProfile: () => dispatch(push(routes.editProfile)),
+  goToEditAddress: () => dispatch(push(routes.editAddress)),
+  getProfileDetails: () => dispatch(getProfile())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile)

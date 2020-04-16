@@ -7,6 +7,8 @@ import { routes } from "../../containers/Router";
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import SvgIcon from '@material-ui/core/SvgIcon'
+import { setBottomNav } from '../../actions/profile';
+
 
 
 
@@ -49,6 +51,12 @@ export class MyBottonNav extends React.Component {
     }
   }
 
+  componentDidMount(){
+    this.setState({
+      value:this.props.place
+    })
+  }
+
   onNavChange = (e, newValue) => {
     this.setState({
       value: newValue
@@ -56,15 +64,19 @@ export class MyBottonNav extends React.Component {
     switch (newValue) {
       case 'home':
         this.props.goToHomePage()
+        this.props.setPlace('home')
         break;
       case 'cart':
         this.props.goToCartPage()
+        this.props.setPlace('cart')
         break;
       case 'profile':
         this.props.goToProfilePage()
+        this.props.setPlace('profile')
         break;
       default:
         this.props.goToHomePage()
+        this.props.setPlace('home')
         break;
     }
   }
@@ -82,10 +94,14 @@ export class MyBottonNav extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  place: state.profile.bottomNavPlace
+})
 const mapDispatchToProps = (dispatch) => ({
   goToHomePage: () => dispatch(push(routes.feedRestaurants)),
   goToCartPage: () => dispatch(push(routes.cart)),
   goToProfilePage: () => dispatch(push(routes.profile)),
+  setPlace:(actualPlace) => dispatch(setBottomNav(actualPlace))
 })
 
-export default connect(null, mapDispatchToProps)(MyBottonNav)
+export default connect(mapStateToProps, mapDispatchToProps)(MyBottonNav)

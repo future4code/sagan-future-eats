@@ -3,6 +3,8 @@ import { MyInput } from "../../components/material/Inputs";
 import MyButton from "../../components/material/Button";
 import { MyPageTitle } from "../../components/pageTitleBar";
 import { PageWrapper, FormStyle} from "./style"
+import { connect } from "react-redux";
+import { addressRegisterModifications } from "../../actions/profile";
 
 
 
@@ -32,7 +34,7 @@ class AddressRegister extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.submitForm(this.state.form)
+    this.props.setAddress(this.state.form,'feed')
     this.setState({
       form: {
         street: '',
@@ -106,5 +108,7 @@ class AddressRegister extends Component {
 }
 
 
-
-export default AddressRegister
+const masDispatchToProps = (dispatch) => ({
+  setAddress:(form,goto) =>dispatch(addressRegisterModifications(form,goto))
+})
+export default connect(null, masDispatchToProps) (AddressRegister)
