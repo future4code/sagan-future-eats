@@ -14,7 +14,7 @@ import {
   InfoWrapper
 } from './styles'
 
-import { getProfile } from '../../actions/profile';
+import { getProfile, getOrderHistory } from '../../actions/profile';
 
 
 export class Profile extends React.Component {
@@ -28,11 +28,12 @@ export class Profile extends React.Component {
     }
     else {
       this.props.profile || this.props.getProfileDetails()
+      this.props.history || this.props.getOrdersHistory()
     }
   }
 
   render() {
-    const { profile } = this.props
+    const { profile, history } = this.props
     return (
       <PageWrapper>
         <MyPageTitle pageTitle='Meu perfil' />
@@ -42,7 +43,7 @@ export class Profile extends React.Component {
               <p>{profile.name}</p>
               <p>{profile.email}</p>
               <p>{profile.cpf}</p>
-            </InfoWrapper> 
+            </InfoWrapper>
           }
           <span onClick={this.props.goToEditProfile}>
             <EditOutlinedIcon />
@@ -59,11 +60,15 @@ export class Profile extends React.Component {
         </AddressWrapper>
         <SubTitle>Histórico de pedidos</SubTitle>
         <Divisor> <hr /> </Divisor>
-        <HystoryUnit />
-        <HystoryUnit />
-        <HystoryUnit />
-        <HystoryUnit />
-        <MyBottonNav />
+        {history ?
+          history.length > 0 ?
+            history.map((order, index) => (
+              <HystoryUnit key={index} order={order} />
+            )) :
+            <p>Você não realizou nenhum pedido</p> :
+          null
+        }
+        < MyBottonNav />
       </PageWrapper >
     )
   }
@@ -78,7 +83,8 @@ const mapDispatchToProps = (dispatch) => ({
   goToLogin: () => dispatch(push(routes.login)),
   goToEditProfile: () => dispatch(push(routes.editProfile)),
   goToEditAddress: () => dispatch(push(routes.editAddress)),
-  getProfileDetails: () => dispatch(getProfile())
+  getProfileDetails: () => dispatch(getProfile()),
+  getOrdersHistory: () => dispatch(getOrderHistory())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile)

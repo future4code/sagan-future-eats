@@ -57,7 +57,6 @@ export const addressRegisterModifications = (form, goto) => async (dispatch) => 
     token = response.data.token
     window.localStorage.setItem("token", token)
     dispatch(setProfileDetails(response.data.user))
-    console.log(form)
 
     if (goto === "feed") {
       dispatch(push(routes.feedRestaurants))
@@ -80,7 +79,7 @@ export const getOrderHistory = () => async (dispatch) => {
         "Content-Type": 'application/json'
       }
     })
-
+  
     dispatch(setOrderHistory(response.data.orders))
   }
   catch (error) {
