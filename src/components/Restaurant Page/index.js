@@ -9,14 +9,14 @@ export class RestaurantPage extends Component {
 
     componentDidMount(){
         const { restaurantDetails, goToFeed } = this.props
-        if(restaurantDetails.id === null || restaurantDetails.ID === undefined || restaurantDetails.id === ""){
+        if(restaurantDetails.id === null || restaurantDetails.id === undefined || restaurantDetails.id === ""){
             goToFeed()
         }
     }
 
     render() {
         const { restaurantDetails } = this.props;
-        if(restaurantDetails.id === null || restaurantDetails.ID === undefined || restaurantDetails.id === ""){
+        if(restaurantDetails.id === null || restaurantDetails.id === undefined || restaurantDetails.id === ""){
             return(
                 <div>
                     Nothing here!
