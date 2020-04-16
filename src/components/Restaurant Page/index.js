@@ -36,7 +36,7 @@ export class RestaurantPage extends Component {
             <IconButton><img src={require("../../images/BackButton/back.png")} alt="Icone do Botão" /></IconButton>
             <RPS.Title><RPS.TitleContend>Restaurante</RPS.TitleContend></RPS.Title>
           </RPS.TopBar>
-          <RPS.ImageLogoRestaurant><img src={restaurantDetails.logoUrl} alt="Logo" /></RPS.ImageLogoRestaurant>
+          <RPS.ImageLogoRestaurant src={restaurantDetails.logoUrl} alt="Logo"></RPS.ImageLogoRestaurant>
           <RPS.RestaurantData>
             <RPS.RestaurantName>{restaurantDetails.name}</RPS.RestaurantName>
             <RPS.RestaurantType>{restaurantDetails.category}</RPS.RestaurantType>
