@@ -13,6 +13,12 @@ class CartPage extends Component {
         }
     }
 
+    componentDidMount() {
+        if (localStorage.getItem('token') === null) {
+          this.props.goToLogin()
+        }
+      }
+
     handleInputValue = (event) => {
         this.setState({
             [event.target.name]: event.target.value
@@ -58,7 +64,7 @@ class CartPage extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        // goToRegisterPage: () => dispatch(push(routes.register))
+        goToLogin: () => dispatch(push(routes.login)),
     }
 }
 
