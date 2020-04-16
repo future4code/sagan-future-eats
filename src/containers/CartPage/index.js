@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
-
 import { routes } from '../Router'
-
-
 import * as CPS from './CartPageStyles'
-
+import MyPageTitle from '../../components/pageTitleBar'
+import MyBottonNav from '../../components/material/BottomNav';
 
 class CartPage extends Component {
     constructor(props) {
@@ -24,10 +22,7 @@ class CartPage extends Component {
     render() {
         return (
             <CPS.PageWrapper>
-
-                <CPS.Bar>
-                    <h3>Meu Carrinho</h3>
-                </CPS.Bar>
+                <MyPageTitle showBack pageTitle='Meu Carrinho' />
 
                 <CPS.GreyBox>
                     <CPS.AddressLabel>Endereco de Entrega</CPS.AddressLabel>
@@ -55,12 +50,7 @@ class CartPage extends Component {
 
                 <CPS.ConfirmButton>Confirmar</CPS.ConfirmButton>
 
-                <CPS.Footer>
-                    <CPS.FooterIcon src="https://cdn3.iconfinder.com/data/icons/streamline-icon-set-free-pack/48/Streamline-18-512.png"/>
-                    <CPS.FooterIcon src="https://cdn3.iconfinder.com/data/icons/streamline-icon-set-free-pack/48/Streamline-18-512.png"/>
-                    <CPS.FooterIcon src="https://cdn3.iconfinder.com/data/icons/streamline-icon-set-free-pack/48/Streamline-18-512.png"/>
-                </CPS.Footer>
-
+                <MyBottonNav />
             </CPS.PageWrapper>
         );
     }
