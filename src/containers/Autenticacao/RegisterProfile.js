@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { signup } from '../../actions/profile'
 import MyButton from "../../components/material/Button";
 import { MyInput, MyPasswordInput } from "../../components/material/Inputs";
-import { MyPageTitle } from "../../components/pageTitleBar";
+import MyPageTitle from "../../components/pageTitleBar";
 import { PageWrapper, FormStyle, LogoFutureEats } from "./style"
 
 
