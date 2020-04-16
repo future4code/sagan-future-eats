@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { MyInput } from "../../components/material/Inputs";
 import MyButton from "../../components/material/Button";
-import { MyPageTitle } from "../../components/pageTitleBar";
+import MyPageTitle from "../../components/pageTitleBar";
 import { PageWrapper, FormStyle} from "./style"
 import { connect } from "react-redux";
 import { addressRegisterModifications } from "../../actions/profile";
