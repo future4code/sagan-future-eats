@@ -3,8 +3,8 @@ import { push } from "connected-react-router";
 import { connect } from "react-redux";
 import { routes } from "../../containers/Router";
 
-import { MyPageTitle } from '../../components/pageTitleBar';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+import { MyPageTitle } from '../../components/pageTitleBar';
 import HystoryUnit from '../../components/history';
 import MyBottonNav from '../../components/material/BottomNav'
 
@@ -24,7 +24,7 @@ export class Profile extends React.Component {
 
   componentDidMount() {
     if (localStorage.getItem('token') === null) {
-      //this.props.goToLogin()
+      this.props.goToLogin()
     }
     else {
       this.props.profile || this.props.getProfileDetails()

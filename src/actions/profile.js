@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { push, goBack } from "connected-react-router";
+import { push } from "connected-react-router";
 import { routes } from '../containers/Router/index';
 
 const baseURL = 'https://us-central1-missao-newton.cloudfunctions.net/futureEats'

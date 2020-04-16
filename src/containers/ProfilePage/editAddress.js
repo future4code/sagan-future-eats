@@ -1,11 +1,15 @@
 import React from 'react'
-import { PageWrapper } from './styles'
+import { connect } from 'react-redux'
+import { goBack, push } from 'connected-react-router'
+import { routes } from "../../containers/Router";
+
 import MyButton from '../../components/material/Button'
 import { MyInput } from '../../components/material/Inputs'
 import MyPageTitle from '../../components/pageTitleBar'
+
 import { getFullAddress, addressRegisterModifications } from '../../actions/profile'
-import { connect } from 'react-redux'
-import { goBack } from 'connected-react-router'
+
+import { PageWrapper } from './styles'
 
 export class AddressEdit extends React.Component {
   constructor(props) {
@@ -131,6 +135,7 @@ const mapStateToProps = (state) => ({
   address: state.profile.profileFullAddress
 })
 const masDispatchToProps = (dispatch) => ({
+  goToLogin: () => dispatch(push(routes.login)),
   goBack: () => dispatch(goBack()),
   getFullAddress: () => dispatch(getFullAddress()),
   updateAddress:(form) =>dispatch(addressRegisterModifications(form))
