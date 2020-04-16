@@ -8,9 +8,17 @@ export const ProfileWrapper = styled.div`
   height:70px;
   padding: 0 16px;
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: row nowrap;
   justify-content:space-between;
   align-content:space-between;
+  & span{
+    margin-left:auto;
+  }
+`
+export const InfoWrapper = styled.div`
+  display:flex;
+  flex-flow:column nowrap;
+  justify-content:space-between;
   & p {
     margin: 0;
   }
@@ -21,19 +29,18 @@ export const AddressWrapper = styled.div`
   padding:16px;
   background-color: #eeeeee;
   margin: 16px 0;
+  overflow:hidden;
   display:flex;
-  flex-flow:column wrap;
+  flex-flow:row nowrap;
   justify-content:space-between;
-  align-content:space-between;
-  & p {
-    margin: 0;
-  }
+  align-content:center;
+`
+export const ParagraphWrapper = styled(InfoWrapper)`
   & > p:first-child{
     color: #b8b8b8
   }
 `
 export const IconWrapper = styled.span`
-  flex-grow: 1;
   display:flex;
   justify-content:center;
   align-items:center;

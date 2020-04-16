@@ -35,6 +35,8 @@ const OutlinedInputStyled = styled(OutlinedInput)`
 `
 
 export function MyInput(props) {
+  const pattern = props.pattern
+  const title = props.title
   return (
     <Wrapper>
       <TextFieldStyled
@@ -47,6 +49,10 @@ export function MyInput(props) {
         onChange={props.onChange}
         required={props.required}
         fullWidth
+        inputProps={{
+          pattern: pattern,
+          title:title
+        }}
         InputLabelProps={{
           shrink: true,
         }}

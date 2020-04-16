@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { push, goBack } from "connected-react-router";
+import { push } from "connected-react-router";
 import { routes } from '../containers/Router/index';
 
 const baseURL = 'https://us-central1-missao-newton.cloudfunctions.net/futureEats'
@@ -13,6 +13,7 @@ export const login = (form) => async (dispatch) => {
     window.localStorage.setItem("token", token)
 
     const profileDetails = response.data.user;
+    console.log(profileDetails)
     dispatch(setProfileDetails(profileDetails))
 
     dispatch(push(routes.feedRestaurants))
@@ -26,15 +27,15 @@ export const login = (form) => async (dispatch) => {
 
 export const signup = (form) => async (dispatch) => {
   try {
-    // const response = await axios.post(`${baseURL}/signup`, form);
+    const response = await axios.post(`${baseURL}/signup`, form);
 
-    // const token = response.data.token
-    // window.localStorage.setItem("token", token)
+    const token = response.data.token
+    window.localStorage.setItem("token", token)
 
-    // const profileDetails = response.data.user;
-    // dispatch(setProfileDetails(profileDetails))
+    const profileDetails = response.data.user;
+    dispatch(setProfileDetails(profileDetails))
 
-    // dispatch(push(routes.addressregister))
+    dispatch(push(routes.addressregister))
     console.log(form)
   }
   catch (error) {
@@ -55,12 +56,12 @@ export const addressRegisterModifications = (form, goto) => async (dispatch) => 
 
     token = response.data.token
     window.localStorage.setItem("token", token)
-    dispatch(setProfileShortAddress(response.data.user.address))
+    dispatch(setProfileDetails(response.data.user))
 
     if (goto === "feed") {
       dispatch(push(routes.feedRestaurants))
     } else {
-      dispatch(goBack())
+      dispatch(push(routes.profile))
     }
   }
   catch (error) {
@@ -78,7 +79,7 @@ export const getOrderHistory = () => async (dispatch) => {
         "Content-Type": 'application/json'
       }
     })
-
+  
     dispatch(setOrderHistory(response.data.orders))
   }
   catch (error) {
@@ -95,7 +96,6 @@ export const getFullAddress = () => async (dispatch) => {
         auth: token
       }
     })
-
     dispatch(setProfileFullAddress(response.data.address))
   }
   catch(error){
@@ -112,8 +112,7 @@ export const getProfile = () => async (dispatch) => {
         "Content-Type": 'application/json'
       }
     })
-
-    dispatch(setProfileDetails(response.data.users))
+    dispatch(setProfileDetails(response.data.user))
   }
   catch(error){
     console.error(error)
@@ -130,8 +129,8 @@ export const updateProfile = (form) => async (dispatch) => {
         "Content-Type": 'application/json'
       }
     })
-    dispatch(setProfileDetails(response.data.users))
-    dispatch(goBack())
+    dispatch(setProfileDetails(response.data.user))
+    dispatch(push(routes.profile))
   }
   catch(error){
     console.error(error)
@@ -162,5 +161,12 @@ export const setOrderHistory = (orderHistory) => (
   {
     type: 'SET_ORDER_HISTORY',
     payload: { orderHistory }
+  }
+)
+//********VER ONDE COLOCAR */
+export const setBottomNav = (actualPlace) => (
+  {
+    type: 'SET_BOTTOM_NAV_PLACE',
+    payload: { actualPlace }
   }
 )

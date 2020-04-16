@@ -86,6 +86,8 @@ class RegisterPage extends Component {
             type="text"
             label="CPF"
             placeholder="000.000.000-00"
+            pattern={'[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2}'}
+            title='CPF: 111.222.333-44'
             required={true}
             onChange={this.handleInputValue}
             value={this.state.form.cpf} />
