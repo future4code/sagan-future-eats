@@ -1,6 +1,5 @@
 import styled from "styled-components";
 export const Restaurant = styled.div`
-  width:100%;
   display:flex;
   flex-direction: column;
   margin-bottom: 16px;
@@ -30,13 +29,17 @@ export const TitleContend = styled.div`
   letter-spacing: -0.39px;
   color: #000000;
  `
-export const ImageLogoRestaurant = styled.div`  
-  height: 120px;
-  object-fit: contain;
+export const ImageLogoRestaurant = styled.img`  
+  object-fit: cover;
   display:flex;
   align-self:center;
+  border-radius: 8px 8px 0px 0px;
+  width: 90%;
+  height: 120px;
  `
+
 export const RestaurantData = styled.div`
+  width:90%;
   height: 120px;
   display:flex;
   flex-direction:column;
@@ -47,14 +50,17 @@ export const RestaurantData = styled.div`
   letter-spacing: -0.39px;
  `
 export const RestaurantDataMid = styled.div`
+  margin-top:8px;
   display:flex;
 `
 export const RestaurantName = styled.div`
+  margin-top:8px;
   width: 328px;
   height: 18px;
   color: #5cb646;
  `
 export const RestaurantType = styled.div`
+  margin-top:8px;
   width: 104px;
   height: 18px;
  `
@@ -67,6 +73,7 @@ export const RestaurantFreight = styled.div`
   height: 18px;
  `
 export const RestaurantAdress = styled.div`
+  margin-top:8px;
   width: 328px;
   height: 18px;
  `
@@ -96,6 +103,7 @@ export const RestaurantItem = styled.div`
   "image preço bottomButtom";
  `
 export const RestaurantItemImage = styled.img`
+  border-radius: 8px 0px 0px 8px;
   width: 96px;
   height: 112px;
   object-fit: cover;
