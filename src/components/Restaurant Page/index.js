@@ -4,6 +4,7 @@ import { IconButton, Divider, CardMedia } from "@material-ui/core";
 import { connect } from 'react-redux'
 import { push } from "connected-react-router";
 import { routes } from '../../containers/Router';
+import MyPageTitle from '../../components/pageTitleBar'
 
 export class RestaurantPage extends Component {
 
@@ -32,10 +33,7 @@ export class RestaurantPage extends Component {
     else {
       return (
         <RPS.Restaurant>
-          <RPS.TopBar>
-            <IconButton><img src={require("../../images/BackButton/back.png")} alt="Icone do Botão" /></IconButton>
-            <RPS.Title><RPS.TitleContend>Restaurante</RPS.TitleContend></RPS.Title>
-          </RPS.TopBar>
+          <MyPageTitle showBack pageTitle={"Restaurante"}/>
           <RPS.ImageLogoRestaurant src={restaurantDetails.logoUrl} alt="Logo"></RPS.ImageLogoRestaurant>
           <RPS.RestaurantData>
             <RPS.RestaurantName>{restaurantDetails.name}</RPS.RestaurantName>

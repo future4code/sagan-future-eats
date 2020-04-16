@@ -33,11 +33,13 @@ export const ImageLogoRestaurant = styled.img`
   object-fit: cover;
   display:flex;
   align-self:center;
+  border-radius: 8px 8px 0px 0px;
   width: 90%;
   height: 120px;
  `
 
 export const RestaurantData = styled.div`
+  width:90%;
   height: 120px;
   display:flex;
   flex-direction:column;
@@ -101,7 +103,7 @@ export const RestaurantItem = styled.div`
   "image preço bottomButtom";
  `
 export const RestaurantItemImage = styled.img`
-  border-radius: 8px 8px 0px 0px;
+  border-radius: 8px 0px 0px 8px;
   width: 96px;
   height: 112px;
   object-fit: cover;
