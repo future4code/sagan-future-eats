@@ -64,7 +64,7 @@ class InputSearchResult extends Component {
                 return (
                   <CardsRestaurants key={restaurant.id} restaurant={restaurant} />
                 )
-              }) : <p>Não encontramos :(</p>
+              }) : <Typography align='center' variant="subtitle2" >Não encontramos :(</Typography>
             : <Typography align='center' variant="subtitle2" >Busque por nome de restaurante</Typography>
           }
         </CardsWrapper>
