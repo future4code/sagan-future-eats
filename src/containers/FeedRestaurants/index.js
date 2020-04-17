@@ -68,6 +68,7 @@ class FeedRestaurants extends Component {
 
     render() {        
         return (
+            
             <MainWrapper>
                 <MyPageTitle pageTitle={"FutureEats"} />                
                     <InputSearch
