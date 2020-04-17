@@ -5,14 +5,8 @@ import { MainWrapper, InputSearch, CardsWrapper, FilterWrapper } from './styles'
 import FilterScroll from './FilterScroll';
 import { push } from "connected-react-router";
 import { routes } from '../Router';
-
 import { connect } from 'react-redux';
-import { push } from "connected-react-router";
-import { routes } from "../../containers/Router";
 import { getRestaurants } from '../../actions/GetRestaurantsAction';
-
-import { MyPageTitle } from '../../components/pageTitleBar';
-import MyBottonNav from '../../components/material/BottomNav';
 import { Input, InputAdornment, Typography } from '@material-ui/core';
 
 import SearchIcon from '@material-ui/icons/Search';

@@ -5,6 +5,7 @@ import { routes } from '../Router'
 import * as CPS from './CartPageStyles'
 import MyPageTitle from '../../components/pageTitleBar'
 import MyBottonNav from '../../components/material/BottomNav';
+import getProfile from '../../actions/profile'
 
 class CartPage extends Component {
     constructor(props) {
@@ -15,10 +16,12 @@ class CartPage extends Component {
 
     componentDidMount() {
         if (localStorage.getItem('token') === null) {
-          this.props.goToLogin()
+            this.props.goToLogin()
         }
         this.props.getOrder()
-      }
+        this.props.getProfileDetails()
+
+    }
 
     handleInputValue = (event) => {
         this.setState({
@@ -33,7 +36,7 @@ class CartPage extends Component {
 
                 <CPS.GreyBox>
                     <CPS.AddressLabel>Endereco de Entrega</CPS.AddressLabel>
-                    <CPS.Address>Rua Galeao Coutinho 364</CPS.Address>
+                    <CPS.Address></CPS.Address>
                 </CPS.GreyBox>
 
                 <CPS.Title>
@@ -48,7 +51,7 @@ class CartPage extends Component {
 
                 <CPS.PayMethodLabel>Forma de Pagamento</CPS.PayMethodLabel>
 
-                <CPS.LineBreak/>
+                <CPS.LineBreak />
 
                 <CPS.PayMethodContainer>
                     <p>Dinheiro (INSERIR TOGGLE A ESQUERDA)</p>
@@ -65,13 +68,17 @@ class CartPage extends Component {
 
 const mapStateToProps = (state) => {
     return {
-      restaurantOrder: state.store.restaurantOrder
+        restaurantOrder: state.store.restaurantOrder,
+        restaurantDetails: state.store.restaurantDetails,
+        profileDetails: state.store.profileDetails,
+
     }
-  };
+};
 
 const mapDispatchToProps = dispatch => {
     return {
         goToLogin: () => dispatch(push(routes.login)),
+        getProfileDetails: () => dispatch(getProfile()),
     }
 }
 

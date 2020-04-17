@@ -98,6 +98,7 @@ export function AlertDialogAddItem(props){
                 border: "solid 1px #b8b8b8"
               }}
               onChange={handleChange}
+            
             >
               <MenuItem value={0}>0</MenuItem>
               <MenuItem value={1}>1</MenuItem>
