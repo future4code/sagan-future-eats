@@ -30,13 +30,14 @@ export const getOrder = () => async (dispatch) => {
 
 //---
 
+/*
 const setOrderHistory = (orderHistory) => ({
 	type: 'SET_ORDER_HISTORY',
 	payload: {
 		// orderHistory: orders	
 	}	
 })
-
+*/
 export const getOrderHistory = () => async (dispatch) => {
 	try {
 		const response = await axios.get(`${baseURL}/orders/history`,{
