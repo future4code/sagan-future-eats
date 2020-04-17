@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { push } from "connected-react-router";
+import { routes } from "../../containers/Router";
 import { signup } from '../../actions/profile'
 import MyButton from "../../components/material/Button";
 import { MyInput, MyPasswordInput } from "../../components/material/Inputs";
 import MyPageTitle from "../../components/pageTitleBar";
 import { PageWrapper, FormStyle, LogoFutureEats } from "./style"
-
-
 
 class RegisterPage extends Component {
   constructor(props) {
@@ -20,6 +20,12 @@ class RegisterPage extends Component {
       },
       passwordConfirm: '',
       passwordNotMatch: false
+    }
+  }
+
+  componentDidMount() {
+    if (localStorage.getItem('token') != null) {
+      this.props.goToFeed()
     }
   }
 
@@ -117,7 +123,7 @@ class RegisterPage extends Component {
 }
 function mapDispatchToProps(dispatch) {
   return {
-
+    goToFeed: () => dispatch(push(routes.feedRestaurants)),
     signup: (form) => dispatch(signup(form)),
   }
 }

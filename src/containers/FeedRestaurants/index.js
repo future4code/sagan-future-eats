@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import { push } from "connected-react-router";
+import { routes } from "../../containers/Router";
 import { getRestaurants } from '../../actions/GetRestaurantsAction';
 import { MyPageTitle } from '../../components/pageTitleBar';
 import MyBottonNav from '../../components/material/BottomNav';
-
 import { Input, InputAdornment, Typography } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import CardsRestaurants from './CardsRestaurants';
@@ -34,6 +35,9 @@ const FilterWrapper = styled.div`
 class FeedRestaurants extends Component {
 
     componentDidMount() {
+        if (localStorage.getItem('token') === null) {
+            this.props.goToLogin()
+          }
         this.props.getRestaurants()
     }
 
@@ -67,7 +71,8 @@ class FeedRestaurants extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getRestaurants: () => dispatch(getRestaurants())
+        getRestaurants: () => dispatch(getRestaurants()),
+        goToLogin: () => dispatch(push(routes.login)),
     }
 };
 
