@@ -1,63 +1,99 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import MyPageTitle from '../../components/pageTitleBar';
+import MyBottonNav from '../../components/material/BottomNav';
+import { MainWrapper, InputSearch, CardsWrapper, FilterWrapper } from './styles'
+import FilterScroll from './FilterScroll';
+import { push } from "connected-react-router";
+import { routes } from '../Router';
+
 import { connect } from 'react-redux';
 import { getRestaurants } from '../../actions/GetRestaurantsAction';
-import { MyPageTitle } from '../../components/pageTitleBar';
-import MyBottonNav from '../../components/material/BottomNav';
 
-import { Input, InputAdornment, Typography } from '@material-ui/core';
+import { InputAdornment } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import CardsRestaurants from './CardsRestaurants';
 
-const InputSearch = styled(Input)`
-  width: 328px;
-  height: 56px;
-  border-radius: 2px;
-  border: solid 1px #b8b8b8;
-  margin:0 16px;
-  padding:17px;
-  `
-const MainWrapper = styled.div`
-    width: 360px;
-    height: 640px;       
-`
-const CardsWrapper = styled.div`
-  margin:8px 16px;
-  border-radius: 8px;  
-`
-const FilterWrapper = styled.div`
-    margin:8px;
-    display:flex;
-    justify-content:space-evenly;
-`
 
 class FeedRestaurants extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            actualValue: ""
+        }
+    }
 
     componentDidMount() {
         this.props.getRestaurants()
     }
 
-    render() {
+    handleClick = (valorAlterado) => {        
+        if(valorAlterado === this.state.actualValue){
+            this.setState({actualValue: ""})
+        }else{
+            switch(valorAlterado){
+                case "Hamburguer":
+                    this.setState({actualValue: "Hamburguer"}) 
+                    break;
+                case "Árabe":
+                    this.setState({actualValue: "Árabe"})
+                    break;
+                case "Asiática":
+                    this.setState({actualValue: "Asiática"})
+                    break; 
+                case "Mexicana":
+                    this.setState({actualValue: "Mexicana"})
+                    break; 
+                case "Baiana":
+                    this.setState({actualValue: "Baiana"})
+                    break; 
+                case "Carnes":
+                    this.setState({actualValue: "Carnes"})
+                    break; 
+                case "Italiana":
+                    this.setState({actualValue: "Italiana"})
+                    break; 
+                case "Sorvetes":
+                    this.setState({actualValue:"Sorvetes"})
+                    break; 
+                case "Petiscos":
+                    this.setState({actualValue: "Petiscos"})
+                    break;
+                    
+                    default:
+                        this.setState({actualValue: ""})
+                        break;
+            }
+        }
+    }
+
+    render() {        
         return (
             
             <MainWrapper>
                 <MyPageTitle pageTitle={"FutureEats"} />                
-                <InputSearch
-                    id="input-with-icon-adornment"
-                    placeholder="Restaurante"
-                    startAdornment={
-                        <InputAdornment position="start">
-                            <SearchIcon />
-                        </InputAdornment>
-                    }
-                />
+                    <InputSearch
+                        id="input-with-icon-adornment"
+                        onClick={() => this.props.goToSearch()}
+                        placeholder="Restaurante"
+                        startAdornment={
+                            <InputAdornment position="start">
+                                <SearchIcon />
+                            </InputAdornment>
+                        }
+                    />                
                 <FilterWrapper>
-                    <Typography variant="h6" color="primary">Burger</Typography>
-                    <Typography variant="h6">Asiática</Typography>
-                    <Typography variant="h6">Massas</Typography>
+                    <FilterScroll  handleClick = {this.handleClick} />
                 </FilterWrapper>
                 <CardsWrapper>
-                    <CardsRestaurants />
+                    {this.props.restaurantList
+                    .filter(restaurant => {
+                        return this.state.actualValue? restaurant.category === this.state.actualValue 
+                        : true
+                    }).map(restaurant => {
+                        return(
+                            <CardsRestaurants key={restaurant.id} restaurant= {restaurant} />                           
+                        )
+                    })}
                 </CardsWrapper>
                 <MyBottonNav />
             </MainWrapper>
@@ -65,11 +101,18 @@ class FeedRestaurants extends Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+      restaurantList: state.store.restaurantList
+  
+    }
+  };
+
 const mapDispatchToProps = (dispatch) => {
     return {
-        getRestaurants: () => dispatch(getRestaurants())
+        getRestaurants: () => dispatch(getRestaurants()),
+        goToSearch: () => dispatch(push(routes.inputSearch))
     }
 };
 
-
-export default connect(null, mapDispatchToProps)(FeedRestaurants)
+export default connect(mapStateToProps, mapDispatchToProps)(FeedRestaurants)
