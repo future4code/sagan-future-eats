@@ -14,8 +14,6 @@ import {
   baseURL
 } from './profile'
 
-// const baseURL = 'https://us-central1-missao-newton.cloudfunctions.net/futureEats'
-
 const mockProfileDetails = {
   id: 'De8UACSFgFySnKdXm5hI',
   name: 'Astrodev',
@@ -108,13 +106,12 @@ describe("Teste das actions síncronas do profile", () => {
 })
 
 
-
 describe("teste das actions assíncronas do profile", () => {
   test("login success", async () => {
     axios.post = jest.fn(() => ({
       status: 200,
-      data:{
-        token:''
+      data: {
+        token: ''
       }
     }))
     await login(mockLoginForm)(mockDispatch)
@@ -130,13 +127,17 @@ describe("teste das actions assíncronas do profile", () => {
     expect(console.error).toHaveBeenCalledTimes(1)
     expect(alert).toHaveBeenCalledTimes(1)
   })
+
   test("signup success", async () => {
     axios.post = jest.fn(() => ({
-      status: 200
+      status: 200,
+      data: {
+        token: ''
+      }
     }))
     await signup(mockSignupForm)(mockDispatch)
     expect(axios.post).toHaveBeenCalledWith(`${baseURL}/signup`, mockSignupForm)
-    // expect(mockDispatch).toHaveBeenCalledTimes(2)
+    expect(mockDispatch).toHaveBeenCalledTimes(2)
   })
   test("signup failed", async () => {
     axios.post = jest.fn(() => {
@@ -147,9 +148,13 @@ describe("teste das actions assíncronas do profile", () => {
     expect(console.error).toHaveBeenCalledTimes(1)
     expect(alert).toHaveBeenCalledTimes(1)
   })
+
   test("addressRegisterModifications success go to feed", async () => {
     axios.put = jest.fn(() => ({
-      status: 200
+      status: 200,
+      data: {
+        token: ''
+      }
     }))
     await addressRegisterModifications(mockAddressForm, "feed")(mockDispatch)
     expect(axios.put).toHaveBeenCalledWith(`${baseURL}/address`, mockAddressForm, {
@@ -158,20 +163,23 @@ describe("teste das actions assíncronas do profile", () => {
         "Content-Type": 'application/json'
       }
     })
-    // expect(mockDispatch).toHaveBeenCalledTimes(2)
+    expect(mockDispatch).toHaveBeenCalledTimes(2)
   })
   test("addressRegisterModifications success", async () => {
     axios.put = jest.fn(() => ({
-      status: 200
+      status: 200,
+      data: {
+        token: ''
+      }
     }))
     await addressRegisterModifications(mockAddressForm)(mockDispatch)
     expect(axios.put).toHaveBeenCalledWith(`${baseURL}/address`, mockAddressForm, {
       headers: {
-       auth:'',
+        auth: '',
         "Content-Type": 'application/json'
       }
     })
-    // expect(mockDispatch).toHaveBeenCalledTimes(2)
+    expect(mockDispatch).toHaveBeenCalledTimes(2)
   })
   test("addressRegisterModifications failed", async () => {
     axios.put = jest.fn(() => {
@@ -182,18 +190,21 @@ describe("teste das actions assíncronas do profile", () => {
     expect(console.error).toHaveBeenCalledTimes(1)
     expect(alert).toHaveBeenCalledTimes(1)
   })
+
   test("get Order History success", async () => {
     axios.get = jest.fn(() => ({
-      status: 200
+      status: 200,
+      data: mockOrderHistory
+      
     }))
     await getOrderHistory()(mockDispatch)
     expect(axios.get).toHaveBeenCalledWith(`${baseURL}/orders/history`, {
       headers: {
-       auth:'',
+        auth: '',
         "Content-Type": 'application/json'
       }
     })
-    // expect(mockDispatch).toHaveBeenCalleTimes(1)
+    expect(mockDispatch).toHaveBeenCalledTimes(1)
   })
   test("get Order History failed", async () => {
     axios.get = jest.fn(() => {
@@ -204,17 +215,19 @@ describe("teste das actions assíncronas do profile", () => {
     expect(console.error).toHaveBeenCalledTimes(1)
     expect(alert).toHaveBeenCalledTimes(1)
   })
+
   test("get Full Address success", async () => {
     axios.get = jest.fn(() => ({
-      status: 200
+      status: 200,
+      data:mockFullAddress
     }))
     await getFullAddress()(mockDispatch)
     expect(axios.get).toHaveBeenCalledWith(`${baseURL}/profile/address`, {
       headers: {
-        auth:''
+        auth: ''
       }
     })
-    // expect(mockDispatch).toHaveBeenCalledTimes(1)
+    expect(mockDispatch).toHaveBeenCalledTimes(1)
   })
   test("get Full Address failed", async () => {
     axios.get = jest.fn(() => {
@@ -225,18 +238,20 @@ describe("teste das actions assíncronas do profile", () => {
     expect(console.error).toHaveBeenCalledTimes(1)
     expect(alert).toHaveBeenCalledTimes(1)
   })
+
   test("get Profile success", async () => {
     axios.get = jest.fn(() => ({
-      status: 200
+      status: 200,
+      data:mockProfileDetails
     }))
     await getProfile()(mockDispatch)
     expect(axios.get).toHaveBeenCalledWith(`${baseURL}/profile`, {
       headers: {
-       auth:'',
+        auth: '',
         "Content-Type": 'application/json'
       }
     })
-    // expect(mockDispatch).toHaveBeenCalledTimes(1)
+    expect(mockDispatch).toHaveBeenCalledTimes(1)
   })
   test("get Profile failed", async () => {
     axios.get = jest.fn(() => {
@@ -247,18 +262,20 @@ describe("teste das actions assíncronas do profile", () => {
     expect(console.error).toHaveBeenCalledTimes(1)
     expect(alert).toHaveBeenCalledTimes(1)
   })
+  
   test("update Profile success", async () => {
     axios.put = jest.fn(() => ({
-      status: 200
+      status: 200,
+      data:mockProfileForm
     }))
     await updateProfile(mockProfileForm)(mockDispatch)
     expect(axios.put).toHaveBeenCalledWith(`${baseURL}/profile`, mockProfileForm, {
       headers: {
-       auth:'',
+        auth: '',
         "Content-Type": 'application/json'
       }
     })
-    //expect(mockDispatch).toHaveBeenCalledTimes(2)
+    expect(mockDispatch).toHaveBeenCalledTimes(2)
   })
   test("update Profile failed", async () => {
     axios.put = jest.fn(() => {
