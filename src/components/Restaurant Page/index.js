@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 import { push } from "connected-react-router";
 import { routes } from '../../containers/Router';
 import MyPageTitle from '../../components/pageTitleBar'
+import AlertDialogAddItem from '../Dialog/AlertDialogAddItem'
+
 
 export class RestaurantPage extends Component {
 
@@ -20,7 +22,9 @@ export class RestaurantPage extends Component {
       }
     }
   }
+  addItem = (id)=>{
 
+  }
   render() {
     const { restaurantDetails } = this.props;
     if (restaurantDetails.id === null || restaurantDetails.id === undefined || restaurantDetails.id === "") {
@@ -54,7 +58,7 @@ export class RestaurantPage extends Component {
                   <RPS.RestaurantItemName>{product.name}</RPS.RestaurantItemName>
                   <RPS.RestaurantItemIngredients>{product.description}</RPS.RestaurantItemIngredients>
                   <RPS.RestaurantItemPrice>{"R$" + product.price.toFixed(2)}</RPS.RestaurantItemPrice>
-                  <RPS.RestaurantButtomAddIten><RPS.RestaurantButtomAddItenText>Adicionar</RPS.RestaurantButtomAddItenText></RPS.RestaurantButtomAddIten>
+                  <RPS.RestaurantButtomAddIten><RPS.RestaurantButtomAddItenText><AlertDialogAddItem></AlertDialogAddItem></RPS.RestaurantButtomAddItenText></RPS.RestaurantButtomAddIten>
                 </RPS.RestaurantItem>
               )
             }
@@ -81,7 +85,7 @@ export class RestaurantPage extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  restaurantDetails: state.store.restaurantDetails
+  restaurantDetails: state.store.restaurantDetails,
 })
 
 const mapDispatchToProps = (dispatch) => ({
