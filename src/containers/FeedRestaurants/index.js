@@ -39,6 +39,7 @@ class FeedRestaurants extends Component {
 
     render() {
         return (
+            
             <MainWrapper>
                 <MyPageTitle pageTitle={"FutureEats"} />                
                 <InputSearch
@@ -69,5 +70,6 @@ const mapDispatchToProps = (dispatch) => {
         getRestaurants: () => dispatch(getRestaurants())
     }
 };
+
 
 export default connect(null, mapDispatchToProps)(FeedRestaurants)

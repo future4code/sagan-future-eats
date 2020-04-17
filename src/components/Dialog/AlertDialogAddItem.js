@@ -10,7 +10,7 @@ import Select from '@material-ui/core/Select';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { connect } from 'react-redux'
 import styled from 'styled-components';
-
+import {setOrder} from '../../actions/SetOrder'
 const DialogText = styled.div`
   height: 18px;
   margin-bottom:31px;
@@ -26,6 +26,15 @@ const DialogText = styled.div`
   color: #000000;
 `
 const theme = createMuiTheme({
+  palette: {
+    primary: { 
+      main: "#5cb646",
+    },
+    action:{
+      disabledBackground:'#aedaa3',
+      disabled:'#333'
+    }
+  },
   overrides: {
     // Style sheet name ⚛️
     MuiSelect: {
@@ -44,8 +53,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export function AlertDialogAddItem() {
-  const [qtde, setQtde] = React.useState(0);
+export function AlertDialogAddItem(props){
+  const [quantity, setQtde] = React.useState(0);
   const [open, setOpen] = React.useState(false);
 
   const handleChange = (event) => {
@@ -59,7 +68,12 @@ export function AlertDialogAddItem() {
   const handleClose = () => {
     setOpen(false);
   };
-
+  const handleAdd = ()=> {
+    const order = {quantity: quantity,id: props.id}
+    props.setOrder(order)
+    setQtde(0)
+    setOpen(false);
+  }
   return (
     <div>
       <div onClick={handleClickOpen}>
@@ -77,7 +91,7 @@ export function AlertDialogAddItem() {
           <ThemeProvider theme={theme}>
             <Select
               defaultValue
-              value={qtde}
+              value={quantity}
               style={{
                 width: "100%",
                 height: "56px",
@@ -100,7 +114,7 @@ export function AlertDialogAddItem() {
           </ThemeProvider>
         </DialogContent>
         <DialogActions>
-          <Button style={{ marginTop: "28px",marginBottom:"28px"}} onClick={handleClose} color="primary">
+          <Button style={{ marginTop: "28px",marginBottom:"28px"}} onClick={handleAdd} color="primary">
             Adicionar ao Carrinho
           </Button>
         </DialogActions>
@@ -109,6 +123,9 @@ export function AlertDialogAddItem() {
   );
 }
 const mapStateToProps = (state) => ({
-  restaurantDetails: state.store.restaurantDetails,
+  restaurantOrder: state.store.restaurantOrder,
 })
-export default connect(mapStateToProps)(AlertDialogAddItem)
+const mapDispatchToProps = (dispatch)=>({ 
+    setOrder: (order) =>  dispatch(setOrder(order))
+  })
+export default connect(mapStateToProps,mapDispatchToProps)(AlertDialogAddItem)
