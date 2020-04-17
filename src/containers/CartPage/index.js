@@ -5,7 +5,7 @@ import { routes } from '../Router'
 import * as CPS from './CartPageStyles'
 import MyPageTitle from '../../components/pageTitleBar'
 import MyBottonNav from '../../components/material/BottomNav';
-import getProfile from '../../actions/profile'
+import {getProfile} from '../../actions/profile'
 
 class CartPage extends Component {
     constructor(props) {
