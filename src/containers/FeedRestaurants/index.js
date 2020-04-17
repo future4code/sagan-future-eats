@@ -5,14 +5,12 @@ import { MainWrapper, InputSearch, CardsWrapper, FilterWrapper } from './styles'
 import FilterScroll from './FilterScroll';
 import { push } from "connected-react-router";
 import { routes } from '../Router';
-
 import { connect } from 'react-redux';
 import { getRestaurants } from '../../actions/GetRestaurantsAction';
+import { Input, InputAdornment, Typography } from '@material-ui/core';
 
-import { InputAdornment } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import CardsRestaurants from './CardsRestaurants';
-
 
 class FeedRestaurants extends Component {
     constructor(props){
@@ -23,6 +21,9 @@ class FeedRestaurants extends Component {
     }
 
     componentDidMount() {
+        if (localStorage.getItem('token') === null) {
+            this.props.goToLogin()
+          }
         this.props.getRestaurants()
     }
 
@@ -68,6 +69,7 @@ class FeedRestaurants extends Component {
 
     render() {        
         return (
+            
             <MainWrapper>
                 <MyPageTitle pageTitle={"FutureEats"} />                
                     <InputSearch
@@ -102,14 +104,14 @@ class FeedRestaurants extends Component {
 
 const mapStateToProps = (state) => {
     return {
-      restaurantList: state.store.restaurantList
-  
+      restaurantList: state.store.restaurantList  
     }
   };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         getRestaurants: () => dispatch(getRestaurants()),
+        goToLogin: () => dispatch(push(routes.login)),
         goToSearch: () => dispatch(push(routes.inputSearch))
     }
 };

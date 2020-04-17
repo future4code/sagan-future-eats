@@ -50,6 +50,11 @@ function CardsRestaurants(props) {
 }
 
 
+const mapStateToProps = (state) => {
+  return {
+    restaurantList: state.store.restaurantList
+  }
+};
 
 const mapDispatchToProps = (dispatch) =>{
   return{
@@ -57,4 +62,4 @@ const mapDispatchToProps = (dispatch) =>{
   }
 }
 
-export default connect(null,mapDispatchToProps)(CardsRestaurants)
+export default connect(mapStateToProps,mapDispatchToProps)(CardsRestaurants)
