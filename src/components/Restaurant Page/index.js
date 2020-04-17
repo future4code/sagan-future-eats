@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import * as RPS from './RestaurantPageStyles'
-import { IconButton, Divider, CardMedia } from "@material-ui/core";
+import { Divider } from "@material-ui/core";
 import { connect } from 'react-redux'
 import { push } from "connected-react-router";
 import { routes } from '../../containers/Router';
