@@ -6,8 +6,6 @@ const initialState = {
 }
 
 export const store = (state = initialState, action) => {
-    console.log("actions", action)
-    console.log("state", state)
     switch (action.type) {
         case 'SET_RESTAURANTS':
 
