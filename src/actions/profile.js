@@ -2,7 +2,7 @@ import axios from 'axios';
 import { push } from "connected-react-router";
 import { routes } from '../containers/Router/index';
 
-const baseURL = 'https://us-central1-missao-newton.cloudfunctions.net/futureEats'
+export const baseURL = 'https://us-central1-missao-newton.cloudfunctions.net/futureEats'
 
 //*****ASSÍNCRONAS*****//
 export const login = (form) => async (dispatch) => {

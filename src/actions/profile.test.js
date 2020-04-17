@@ -11,9 +11,10 @@ import {
   setProfileFullAddress,
   setOrderHistory,
   setBottomNav,
+  baseURL
 } from './profile'
 
-const baseURL = 'https://us-central1-missao-newton.cloudfunctions.net/futureEats'
+// const baseURL = 'https://us-central1-missao-newton.cloudfunctions.net/futureEats'
 
 const mockProfileDetails = {
   id: 'De8UACSFgFySnKdXm5hI',
@@ -79,6 +80,7 @@ beforeEach(() => {
   mockDispatch = jest.fn()
   console.error = jest.fn()
   window.alert = jest.fn()
+  window.localStorage.setItem = jest.fn()
 })
 
 describe("Teste das actions síncronas do profile", () => {
@@ -110,11 +112,14 @@ describe("Teste das actions síncronas do profile", () => {
 describe("teste das actions assíncronas do profile", () => {
   test("login success", async () => {
     axios.post = jest.fn(() => ({
-      status: 200
+      status: 200,
+      data:{
+        token:''
+      }
     }))
     await login(mockLoginForm)(mockDispatch)
     expect(axios.post).toHaveBeenCalledWith(`${baseURL}/login`, mockLoginForm)
-    // expect(mockDispatch).toHaveBeenCalledTimes(2)
+    expect(mockDispatch).toHaveBeenCalledTimes(2)
   })
   test("login failed", async () => {
     axios.post = jest.fn(() => {
@@ -149,7 +154,7 @@ describe("teste das actions assíncronas do profile", () => {
     await addressRegisterModifications(mockAddressForm, "feed")(mockDispatch)
     expect(axios.put).toHaveBeenCalledWith(`${baseURL}/address`, mockAddressForm, {
       headers: {
-        auth: null,
+        auth: '',
         "Content-Type": 'application/json'
       }
     })
@@ -162,7 +167,7 @@ describe("teste das actions assíncronas do profile", () => {
     await addressRegisterModifications(mockAddressForm)(mockDispatch)
     expect(axios.put).toHaveBeenCalledWith(`${baseURL}/address`, mockAddressForm, {
       headers: {
-        auth: null,
+       auth:'',
         "Content-Type": 'application/json'
       }
     })
@@ -184,7 +189,7 @@ describe("teste das actions assíncronas do profile", () => {
     await getOrderHistory()(mockDispatch)
     expect(axios.get).toHaveBeenCalledWith(`${baseURL}/orders/history`, {
       headers: {
-        auth: null,
+       auth:'',
         "Content-Type": 'application/json'
       }
     })
@@ -206,7 +211,7 @@ describe("teste das actions assíncronas do profile", () => {
     await getFullAddress()(mockDispatch)
     expect(axios.get).toHaveBeenCalledWith(`${baseURL}/profile/address`, {
       headers: {
-        auth: null
+        auth:''
       }
     })
     // expect(mockDispatch).toHaveBeenCalledTimes(1)
@@ -227,7 +232,7 @@ describe("teste das actions assíncronas do profile", () => {
     await getProfile()(mockDispatch)
     expect(axios.get).toHaveBeenCalledWith(`${baseURL}/profile`, {
       headers: {
-        auth: null,
+       auth:'',
         "Content-Type": 'application/json'
       }
     })
@@ -247,9 +252,9 @@ describe("teste das actions assíncronas do profile", () => {
       status: 200
     }))
     await updateProfile(mockProfileForm)(mockDispatch)
-    expect(axios.put).toHaveBeenCalledWith(`${baseURL}/profile`,mockProfileForm,{
-      headers:{
-        auth: token,
+    expect(axios.put).toHaveBeenCalledWith(`${baseURL}/profile`, mockProfileForm, {
+      headers: {
+       auth:'',
         "Content-Type": 'application/json'
       }
     })
