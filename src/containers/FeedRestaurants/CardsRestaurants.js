@@ -66,7 +66,6 @@ function CardsRestaurants(props) {
 const mapStateToProps = (state) => {
   return {
     restaurantList: state.store.restaurantList
-
   }
 };
 

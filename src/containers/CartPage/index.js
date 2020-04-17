@@ -17,6 +17,7 @@ class CartPage extends Component {
         if (localStorage.getItem('token') === null) {
           this.props.goToLogin()
         }
+        this.props.getOrder()
       }
 
     handleInputValue = (event) => {
@@ -62,10 +63,16 @@ class CartPage extends Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+      restaurantOrder: state.store.restaurantOrder
+    }
+  };
+
 const mapDispatchToProps = dispatch => {
     return {
         goToLogin: () => dispatch(push(routes.login)),
     }
 }
 
-export default connect(null, mapDispatchToProps)(CartPage);
+export default connect(mapStateToProps, mapDispatchToProps)(CartPage);
