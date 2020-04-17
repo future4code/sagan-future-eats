@@ -7,12 +7,16 @@ import { push } from "connected-react-router";
 import { routes } from '../Router';
 
 import { connect } from 'react-redux';
+import { push } from "connected-react-router";
+import { routes } from "../../containers/Router";
 import { getRestaurants } from '../../actions/GetRestaurantsAction';
 
-import { InputAdornment } from '@material-ui/core';
+import { MyPageTitle } from '../../components/pageTitleBar';
+import MyBottonNav from '../../components/material/BottomNav';
+import { Input, InputAdornment, Typography } from '@material-ui/core';
+
 import SearchIcon from '@material-ui/icons/Search';
 import CardsRestaurants from './CardsRestaurants';
-
 
 class FeedRestaurants extends Component {
     constructor(props){
@@ -23,6 +27,9 @@ class FeedRestaurants extends Component {
     }
 
     componentDidMount() {
+        if (localStorage.getItem('token') === null) {
+            this.props.goToLogin()
+          }
         this.props.getRestaurants()
     }
 
@@ -103,14 +110,14 @@ class FeedRestaurants extends Component {
 
 const mapStateToProps = (state) => {
     return {
-      restaurantList: state.store.restaurantList
-  
+      restaurantList: state.store.restaurantList  
     }
   };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         getRestaurants: () => dispatch(getRestaurants()),
+        goToLogin: () => dispatch(push(routes.login)),
         goToSearch: () => dispatch(push(routes.inputSearch))
     }
 };

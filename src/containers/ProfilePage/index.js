@@ -2,18 +2,15 @@ import React from 'react'
 import { push } from "connected-react-router";
 import { connect } from "react-redux";
 import { routes } from "../../containers/Router";
-
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import { MyPageTitle } from '../../components/pageTitleBar';
 import HystoryUnit from '../../components/history';
 import MyBottonNav from '../../components/material/BottomNav'
-
 import {
   PageWrapper, ProfileWrapper, AddressWrapper,
   IconWrapper, SubTitle, Divisor, ParagraphWrapper,
   InfoWrapper
 } from './styles'
-
 import { getProfile, getOrderHistory } from '../../actions/profile';
 
 
