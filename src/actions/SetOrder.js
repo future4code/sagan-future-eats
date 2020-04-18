@@ -30,19 +30,23 @@ export const getOrder = () => async (dispatch) => {
 
 export const placeOrder = (paymentMethod, orders) => async (dispatch) => {
 	let restaurantId = orders[0].restaurantId
-	let formatedOrder = orders.map(order => {
-		return { id: order.id, quantity: order.quantity }
+	let formatedOrder =[]
+	formatedOrder = orders.map(order => {
+		delete order.restaurantId
+		return  order
 	})
 
 	try {
 		console.log("esse é o restaurantId " + restaurantId)
 		console.log("esse é o paymentMethod " + paymentMethod)
-		console.log("esse é o formatedOrder " + formatedOrder)
+		console.log(formatedOrder)
 		console.log("token" + localStorage.getItem("token"))
 		await axios.post(`${baseURL}/restaurants/${restaurantId}/order`,
-			{products: [formatedOrder] },
-			{paymentMethod:paymentMethod},
-			{ headers: { auth: localStorage.getItem("token") } }
+		{
+			products: formatedOrder,
+			paymentMethod:paymentMethod
+		},
+		{ headers: { auth: localStorage.getItem("token") } }
 		)
 		dispatch(console.log("teste"))
 	} catch (error) {
