@@ -13,6 +13,7 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { withStyles } from '@material-ui/core/styles';
+import {placeOrder} from '../../actions/SetOrder'
 
 
 const GreenRadio = withStyles({
@@ -29,7 +30,7 @@ class CartPage extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            paymentMethod: "",
+            paymentMethod: "money",
         }
 
     }
@@ -59,6 +60,9 @@ class CartPage extends Component {
             [event.target.name]: event.target.value
         })
     };
+    handleSendOrder = ()=>{
+        this.props.placeOrder(this.state.paymentMethod,this.props.restaurantOrder)
+    }
 
 
 
@@ -163,12 +167,12 @@ class CartPage extends Component {
 
                     <CPS.PayMethodContainer>
                         <RadioGroup name="paymentMethod" value={this.state.paymentMethod} onChange={this.handleChangePaymentMethod}>
-                            <FormControlLabel color='primary' value="dinheiro" control={<GreenRadio />} label="Dinheiro" />
-                            <FormControlLabel value="cartao" control={<GreenRadio />} label="Cartao" />
+                            <FormControlLabel value="money" control={<GreenRadio />} label="Dinheiro" />
+                            <FormControlLabel value="creditcard" control={<GreenRadio />} label="Cartao" />
                         </RadioGroup>
                     </CPS.PayMethodContainer>
 
-                    <CPS.ConfirmButton>Confirmar</CPS.ConfirmButton>
+                    <CPS.ConfirmButton onClick={()=>this.handleSendOrder()}>Confirmar</CPS.ConfirmButton>
 
                     <MyBottonNav />
                 </CPS.PageWrapper>
@@ -192,6 +196,7 @@ const mapDispatchToProps = dispatch => {
         goToLogin: () => dispatch(push(routes.login)),
         getProfileDetails: () => dispatch(getProfile()),
         fetchRestaurant: (id) => dispatch(fetchRestaurant(id)),
+        placeOrder: (paymentMethod,orders) => dispatch(placeOrder(paymentMethod,orders))
     }
 }
 

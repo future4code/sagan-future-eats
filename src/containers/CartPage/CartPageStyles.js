@@ -1,12 +1,15 @@
 import styled from "styled-components";
 
 export const PageWrapper = styled.div`
-  width: 100%;
-  height: calc(100vh - 16px);
+  width: 90%;
+  height: 100%;
   display:flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 40%;
 `
 
 export const Bar = styled.div`
@@ -156,10 +159,10 @@ export const PayMethodContainer = styled.div`
 
 export const ConfirmButton = styled.button`
   width: 92%;
-  height: 6.5%;
-  border-radius: 2px;
+  height: 42px;
+  border-radius: 8px;
   background-color: rgba(92, 182, 70, 0.5);
-  margin-top: 20%;
+  margin-top: 14.5%;
 `
 
 export const Footer = styled.div`
