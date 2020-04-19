@@ -287,3 +287,4 @@ describe("teste das actions assíncronas do profile", () => {
     expect(alert).toHaveBeenCalledTimes(1)
   })
 })
+

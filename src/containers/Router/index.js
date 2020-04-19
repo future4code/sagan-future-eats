@@ -10,13 +10,11 @@ import RestaurantPage from '../../components/Restaurant Page'
 import FeedRestaurants from "../../containers/FeedRestaurants";
 import CartPage from "../CartPage";
 import AddressRegister from "../Autenticacao/Address";
+import FirstPage from "../FirstPage";
 import InputSearchResult from '../InputSearchResult/InputSearchResult'
-import FrontPage from '../../components/FrontPage/index'
-
-
 
 export const routes = {
-  root:'/',
+  firstpage:'/',
   login:"/login",
   register:"/register",
   addressregister: "/addressregister",
@@ -33,7 +31,7 @@ function Router(props) {
   return (
     <ConnectedRouter history={props.history}>
      <Switch>
-        <Route exact path={routes.root} component={FrontPage} />
+        <Route exact path={routes.firstpage} component={FirstPage} />
         <Route exact path={routes.login} component={LoginPage} />
         <Route exact path={routes.register} component={RegisterPage} />
         <Route exact path={routes.addressregister} component={AddressRegister} />
