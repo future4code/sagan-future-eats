@@ -69,7 +69,7 @@ export function AlertDialogAddItem(props){
     setOpen(false);
   };
   const handleAdd = ()=> {
-    const order = {quantity: quantity,id: props.id}
+    const order = {quantity: quantity,id: props.id,restaurantId: props.restaurantId}
     props.setOrder(order)
     setQtde(0)
     setOpen(false);

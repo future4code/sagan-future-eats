@@ -91,7 +91,7 @@ export class RestaurantPage extends Component {
                         )
                       }
                     })}
-                    <RPS.RestaurantButtomAddIten><RPS.RestaurantButtomAddItenText><AlertDialogAddItem id={product.id}></AlertDialogAddItem></RPS.RestaurantButtomAddItenText></RPS.RestaurantButtomAddIten>
+                    <RPS.RestaurantButtomAddIten><RPS.RestaurantButtomAddItenText><AlertDialogAddItem id={product.id} restaurantId={restaurantDetails.id}></AlertDialogAddItem></RPS.RestaurantButtomAddItenText></RPS.RestaurantButtomAddIten>
                   </RPS.RestaurantItem>
                 )
               }

@@ -6,6 +6,8 @@ const initialState = {
 }
 
 const profileReducer = (state = initialState, action) => {    
+    console.log("actions profile", action)
+    console.log("state profile", state)
   switch (action.type) {
       case 'SET_PROFILE_DETAILS':                    
           return {
