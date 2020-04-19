@@ -11,7 +11,7 @@ import FeedRestaurants from "../../containers/FeedRestaurants";
 import CartPage from "../CartPage";
 import AddressRegister from "../Autenticacao/Address";
 import FirstPage from "../FirstPage";
-
+import InputSearchResult from '../InputSearchResult/InputSearchResult'
 
 export const routes = {
   firstpage:'/',
@@ -23,7 +23,8 @@ export const routes = {
   profile:'/profile',
   editProfile:'/profile/edit',
   editAddress:'/profile/editAddress',
-  restaurantPage: '/restaurant'
+  restaurantPage: '/restaurant',
+  inputSearch: '/search'
 };
 
 function Router(props) {
@@ -40,6 +41,7 @@ function Router(props) {
         <Route exact path={routes.editProfile} component={ProfileEdit} />
         <Route exact path={routes.editAddress} component={AddressEdit} />
         <Route exact path={routes.restaurantPage} component={RestaurantPage} />
+        <Route exact path={routes.inputSearch} component={InputSearchResult} />
       </Switch>
     </ConnectedRouter>
   );

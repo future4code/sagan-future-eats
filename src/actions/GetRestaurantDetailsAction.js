@@ -12,7 +12,7 @@ export const setRestaurantDetail = (restaurant) => ({
 });
 
 export const fetchRestaurant = (id) => async(dispatch, getState) => {
-	const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkZORWRjaER2Y25KWkpuWEdscmp2IiwibmFtZSI6Ikd1aWxoZXJtZSIsImVtYWlsIjoiZ3VpbGhlcm1lQGdtYWlsLmNvbSIsImNwZiI6IjIyMS4xMTEuMTExLTIyIiwiaGFzQWRkcmVzcyI6dHJ1ZSwiYWRkcmVzcyI6IlIuIE5vc3NhIFNlbmhvcmEgZGFzIE1lcmNlcywgMTc3LCA3MSAtIFZpbGEgTi4gQ29uY2Vpw6fDo28iLCJpYXQiOjE1ODY5MDM0MjJ9.ptXwC2q2ugA7-vv_RqOZsUChqanlj-2lK7IPQ6JQlxU";
+	const token = localStorage.getItem('token')
 	const response = await axios.get(`${baseURL}/restaurants/${id}`,{
 		headers:{auth: token}
 	});	

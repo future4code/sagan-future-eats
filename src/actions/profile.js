@@ -13,7 +13,6 @@ export const login = (form) => async (dispatch) => {
     window.localStorage.setItem("token", token)
 
     const profileDetails = response.data.user;
-    console.log(profileDetails)
     dispatch(setProfileDetails(profileDetails))
 
     dispatch(push(routes.feedRestaurants))
@@ -36,7 +35,6 @@ export const signup = (form) => async (dispatch) => {
     dispatch(setProfileDetails(profileDetails))
 
     dispatch(push(routes.addressregister))
-    console.log(form)
   }
   catch (error) {
     console.error(error)
@@ -116,7 +114,7 @@ export const getProfile = () => async (dispatch) => {
   }
   catch(error){
     console.error(error)
-    alert("Erro ao tentar burscar detalhes do Perfil")
+    alert("Erro ao tentar buscar detalhes do Perfil")
   }
 }
 

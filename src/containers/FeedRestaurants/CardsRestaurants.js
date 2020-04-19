@@ -1,9 +1,12 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@material-ui/core';
-import styled from 'styled-components';
+import { CardRestaurant, InfosContainer } from './styles'
+
 import { connect } from 'react-redux';
 import { goToRestaurantDetail } from '../../actions/GetRestaurantDetailsAction';
+
+import { makeStyles } from '@material-ui/core/styles';
+import { CardActionArea, CardContent, CardMedia, Typography } from '@material-ui/core';
+
 
 const useStyles = makeStyles({
   root: {
@@ -15,26 +18,12 @@ const useStyles = makeStyles({
   },
 });
 
-const CardRestaurant = styled(Card)`
-  margin-bottom:8px;
-  border-radius: 8px;
-  border: solid 1px #b8b8b8;
-  width:328px;
-`
-
-const InfosContainer = styled.div`
-  display:flex;
-  justify-content:space-between;
-`
-
 function CardsRestaurants(props) {
   const classes = useStyles();
-  return (
-    <div>
-      {props.restaurantList.map(restaurant => {
-        return (
+  const { restaurant } = props
+  return (        
           <CardRestaurant className={classes.root} key={restaurant.id}>
-            <div style={{ cursor: 'pointer' }} onClick={() => props.goToRestaurantDetail(restaurant.id)}>
+            <div onClick={() => props.goToRestaurantDetail(restaurant.id)}>
               <CardActionArea>
                 <CardMedia
                   className={classes.media}
@@ -56,17 +45,14 @@ function CardsRestaurants(props) {
                 </CardContent>
               </CardActionArea>
             </div>
-          </CardRestaurant>
-        )
-      })}
-    </div>
+          </CardRestaurant>    
   );
 }
+
 
 const mapStateToProps = (state) => {
   return {
     restaurantList: state.store.restaurantList
-
   }
 };
 

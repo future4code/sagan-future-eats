@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { MyInput } from "../../components/material/Inputs";
 import MyButton from "../../components/material/Button";
-import { MyPageTitle } from "../../components/pageTitleBar";
+import MyPageTitle from "../../components/pageTitleBar";
 import { PageWrapper, FormStyle} from "./style"
 import { connect } from "react-redux";
+import { push } from "connected-react-router";
+import { routes } from "../../containers/Router";
 import { addressRegisterModifications } from "../../actions/profile";
-
 
 
 class AddressRegister extends Component {
@@ -20,6 +21,12 @@ class AddressRegister extends Component {
         state:'',
         complement:'',
       }
+    }
+  }
+
+  componentDidMount() {
+    if (localStorage.getItem('token') === null) {
+      this.props.goToLogin()
     }
   }
 
@@ -109,6 +116,7 @@ class AddressRegister extends Component {
 
 
 const masDispatchToProps = (dispatch) => ({
-  setAddress:(form,goto) =>dispatch(addressRegisterModifications(form,goto))
+  setAddress:(form,goto) =>dispatch(addressRegisterModifications(form,goto)),
+  goToLogin: () => dispatch(push(routes.login)),
 })
 export default connect(null, masDispatchToProps) (AddressRegister)
