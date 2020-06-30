@@ -23,11 +23,11 @@ class RegisterPage extends Component {
     }
   }
 
-  componentDidMount() {
+ /*  componentDidMount() {
     if (localStorage.getItem('token') != null) {
       this.props.goToFeed()
     }
-  }
+  } */
 
   handleInputValue = (e) => {
     this.setState({
