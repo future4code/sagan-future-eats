@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+/* import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
 import { routes } from '../Router'
 import * as CPS from './CartPageStyles'
-import * as RPS from '../../components/Restaurant Page/RestaurantPageStyles'
+import * as RPS from '../RestaurantPage/RestaurantPageStyles'
 import MyPageTitle from '../../components/pageTitleBar'
 import MyBottonNav from '../../components/material/BottomNav';
 import { getProfile } from '../../actions/profile'
@@ -200,4 +200,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CartPage);
+export default connect(mapStateToProps, mapDispatchToProps)(CartPage); */
