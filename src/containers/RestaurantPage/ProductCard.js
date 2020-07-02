@@ -23,7 +23,6 @@ class ProductCard extends React.Component {
   }
 
   checkProductAlreadyInOrder = (thisProductId) => {
-    // console.log('check', thisProductId, this.props.restaurantOrder.products)
     if (this.props.restaurantOrder.products) {
       console.log(this.props.restaurantOrder.products)
       const productAdded = this.props.restaurantOrder.products.filter(product => (
@@ -45,7 +44,6 @@ class ProductCard extends React.Component {
 
   setOrder = (quantity) => {
     const { restaurantOrder, restaurantDetails, product, setOrder, updateOrder } = this.props
-    // console.log(restaurantDetails, restaurantOrder)
     if (restaurantOrder.id === restaurantDetails.id) {
       updateOrder({...product, quantity})
     }
@@ -66,7 +64,7 @@ class ProductCard extends React.Component {
   render() {
     const { product } = this.props
     const { productAddedDetails } = this.state
-    // console.log(product.name, productAddedDetails)
+  
     return (
       <RPS.Product key={product.id}>
         <RPS.ProductImage src={product.photoUrl} ></RPS.ProductImage>

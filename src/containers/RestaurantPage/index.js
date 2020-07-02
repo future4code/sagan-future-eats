@@ -9,7 +9,6 @@ import AlertDialogAddItem from '../../components/Dialog/AlertDialogAddItem'
 import { delOrder } from '../../actions/Order'
 import ProductCard from "./ProductCard";
 
-
 export class RestaurantPage extends Component {
 
   componentDidMount() {

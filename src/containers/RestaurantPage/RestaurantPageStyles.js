@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 export const Restaurant = styled.div`
   display:flex;
   flex-direction: column;
@@ -37,7 +38,6 @@ export const ImageLogoRestaurant = styled.img`
   width: 90%;
   height: 120px;
  `
-
 export const RestaurantData = styled.div`
   width:90%;
   height: 120px;
@@ -153,7 +153,6 @@ export const ProductAddRemoveBtn = styled.div`
   align-items:center;
   color: ${props => props.remove ? '#e02020': '#5cb646'};
 `
-
 export const RestaurantButtomSubIten = styled.div`
   width: 91px;
   height: 32px;
