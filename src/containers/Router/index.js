@@ -6,7 +6,7 @@ import RegisterPage from "../Auth/RegisterProfile";
 import Profile from "../ProfilePage";
 import ProfileEdit from '../ProfilePage/editProfile';
 import AddressEdit from '../ProfilePage/editAddress';
-import RestaurantPage from '../../components/Restaurant Page'
+import RestaurantPage from '../RestaurantPage'
 import FeedRestaurants from "../../containers/FeedRestaurants";
 import CartPage from "../CartPage";
 import AddressRegister from "../Auth/Address";
