@@ -15,6 +15,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { withStyles } from '@material-ui/core/styles';
 import { placeOrder } from '../../actions/Order';
 import ProductCard from "../RestaurantPage/ProductCard";
+import MyButton from "../../components/material/Button";
 
 const GreenRadio = withStyles({
     root: {
@@ -32,7 +33,6 @@ class CartPage extends Component {
         this.state = {
             paymentMethod: "money",
         }
-
     }
 
     componentDidMount() {
@@ -49,101 +49,85 @@ class CartPage extends Component {
 
     }
 
-    handleInputValue = (event) => {
-        this.setState({
-            [event.target.name]: event.target.value
-        })
-    }
-
     handleChangePaymentMethod = (event) => {
         this.setState({
             [event.target.name]: event.target.value
         })
     };
-    handleSendOrder = () => {
+
+    handleSendOrder = (event) => {
+        event.preventDefault()
         this.props.placeOrder(this.state.paymentMethod, this.props.restaurantOrder)
     }
 
-
-
     render() {
         const { restaurantOrder, profile } = this.props;
-        let orderValue = 0;
         return (
-            <CPS.PageWrapper>
+            <>
                 <MyPageTitle showBack pageTitle='Meu Carrinho' />
+                <CPS.PageWrapper>
+                    <CPS.GreyBox>
+                        <CPS.AddressLabel>Endereco de Entrega</CPS.AddressLabel>
+                        <CPS.Address>{profile && profile.address} </CPS.Address>
+                    </CPS.GreyBox>
 
-                <CPS.GreyBox>
-                    <CPS.AddressLabel>Endereco de Entrega</CPS.AddressLabel>
-                    <CPS.Address>{profile && profile.address} </CPS.Address>
-                </CPS.GreyBox>
-
-                {
-                    restaurantOrder.products.length == 0 ?
-                        <CPS.Title>
-                            <CPS.Text>Carrinho Vazio</CPS.Text>
-                        </CPS.Title>
-
-                        :
-                        <>
-
-                            <RPS.RestaurantData>
-                                <RPS.RestaurantName>{restaurantOrder.name}</RPS.RestaurantName>
-                                <RPS.RestaurantAdress>{restaurantOrder.address}</RPS.RestaurantAdress>
-                                <RPS.RestaurantDataMid>
-                                    <RPS.RestaurantTimeDeliver>{restaurantOrder.deliveryTime + " min"}</RPS.RestaurantTimeDeliver>
-                                </RPS.RestaurantDataMid>
-                            </RPS.RestaurantData>
-
+                    {
+                        restaurantOrder.products.length == 0 ?
+                            <CPS.Title>
+                                <CPS.Text>Carrinho Vazio</CPS.Text>
+                            </CPS.Title>
+                            :
                             <>
-                                <RPS.DividerTitle>Principal</RPS.DividerTitle>
+                                <RPS.RestaurantData>
+                                    <RPS.RestaurantName>{restaurantOrder.name}</RPS.RestaurantName>
+                                    <RPS.RestaurantAdress>{restaurantOrder.address}</RPS.RestaurantAdress>
+                                    <RPS.RestaurantDataMid>
+                                        <RPS.RestaurantTimeDeliver>{restaurantOrder.deliveryTime + " min"}</RPS.RestaurantTimeDeliver>
+                                    </RPS.RestaurantDataMid>
+                                </RPS.RestaurantData>
+
                                 <Divider />
                                 {
-                                    restaurantOrder.products.filter(product => (
-                                        product.category !== "Acompanhamento"
-                                    )).map(product => (
-                                        <ProductCard key={product.id} product={product} />
-                                    ))
-                                }
-                                <RPS.DividerTitle>Acompanhamentos</RPS.DividerTitle>
-                                <Divider />
-                                {
-                                    restaurantOrder.products.filter(product => (
-                                        product.category === "Acompanhamento"
-                                    )).map(product => (
+                                    restaurantOrder.products.map(product => (
                                         <ProductCard key={product.id} product={product} />
                                     ))
                                 }
                             </>
+                    }
 
-                        </>
-                }
+                    <CPS.TotalContainer>
+                        <CPS.Freight>Frete: R${restaurantOrder.products.length > 0 ? restaurantOrder.shipping.toFixed(2) : "00.00"}</CPS.Freight>
+                        <CPS.CashBox>
+                            <CPS.SubTotal>SUBTOTAL</CPS.SubTotal>
+                            <CPS.TotalValue>
+                                R$ {
+                                    restaurantOrder.products.length > 0 ? (restaurantOrder.products.reduce((acc, product) => (
+                                        product.quantity * product.price + acc
+                                    ), 0) + restaurantOrder.shipping).toFixed(2) : "00.00"
+                                }
+                            </CPS.TotalValue>
+                        </CPS.CashBox>
+                    </CPS.TotalContainer>
 
-                <CPS.TotalContainer>
-                    <CPS.Freight>Frete: R${restaurantOrder.products.length > 0 ? restaurantOrder.shipping.toFixed(2) : "00.00"}</CPS.Freight>
-                    <CPS.SubTotal>SUBTOTAL</CPS.SubTotal>
-                    <CPS.TotalValue>
-                        R$ {
-                            restaurantOrder.products.length > 0 ? (restaurantOrder.products.reduce((acc, product) => (
-                                product.quantity * product.price + acc
-                            ), 0) + restaurantOrder.shipping).toFixed(2) : "00.00"
-                        }
-                    </CPS.TotalValue>
-                </CPS.TotalContainer>
+                    <CPS.PayMethodLabel>Forma de Pagamento</CPS.PayMethodLabel>
+                    <CPS.LineBreak />
 
-                <CPS.PayMethodLabel>Forma de Pagamento</CPS.PayMethodLabel>
-                <CPS.LineBreak />
+                    <CPS.PayMethodContainer>
+                        <RadioGroup name="paymentMethod" value={this.state.paymentMethod} onChange={this.handleChangePaymentMethod}>
+                            <FormControlLabel value="money" control={<GreenRadio />} label="Dinheiro" />
+                            <FormControlLabel value="creditcard" control={<GreenRadio />} label="Cartao" />
+                        </RadioGroup>
+                    </CPS.PayMethodContainer>
 
-                <CPS.PayMethodContainer>
-                    <RadioGroup name="paymentMethod" value={this.state.paymentMethod} onChange={this.handleChangePaymentMethod}>
-                        <FormControlLabel value="dinheiro" control={<GreenRadio />} label="Dinheiro" />
-                        <FormControlLabel value="cartao" control={<GreenRadio />} label="Cartao" />
-                    </RadioGroup>
-                </CPS.PayMethodContainer>
-
-                <CPS.ConfirmButton>Confirmar</CPS.ConfirmButton>
+                    <form onSubmit={this.handleSendOrder}>
+                        <MyButton
+                            btnText="Confirmar"
+                            disabled={this.props.restaurantOrder.products.length === 0}
+                        />
+                    </form>
+                </CPS.PageWrapper>
                 <MyBottonNav />
-            </CPS.PageWrapper>
+            </>
         )
     }
 }

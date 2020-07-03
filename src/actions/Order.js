@@ -2,6 +2,13 @@ import axios from 'axios'
 
 const baseURL = 'https://us-central1-missao-newton.cloudfunctions.net/futureEats'
 
+  // let restaurantId = orders[0].restaurantId
+  // let formatedOrder = []
+  // formatedOrder = orders.map(order => {
+  //   delete order.restaurantId
+  //   return order
+  // })
+
 //*****ASSÍNCRONAS*****//
 export const getActiveOrder = () => async (dispatch) => {
   try {
@@ -21,21 +28,15 @@ export const getActiveOrder = () => async (dispatch) => {
 }
 
 export const placeOrder = (paymentMethod, orders) => async (dispatch) => {
-  let restaurantId = orders[0].restaurantId
-  let formatedOrder = []
-  formatedOrder = orders.map(order => {
-    delete order.restaurantId
-    return order
-  })
-
   try {
-    await axios.post(`${baseURL}/restaurants/${restaurantId}/order`,
+    await axios.post(`${baseURL}/restaurants/${orders.id}/order`,
       {
-        products: formatedOrder,
-        paymentMethod: paymentMethod
+        products: orders.products,
+        paymentMethod: paymentMethod,
       },
       { headers: { auth: localStorage.getItem("token") } }
     )
+    console.log("Boa")
   } catch (error) {
     console.error(error)
     alert('Erro ao tentar mandar a order')
