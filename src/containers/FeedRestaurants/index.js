@@ -11,6 +11,7 @@ import { Input, InputAdornment, Typography } from '@material-ui/core';
 
 import SearchIcon from '@material-ui/icons/Search';
 import CardsRestaurants from './CardsRestaurants';
+import CardOrder from './CardOrderProgress';
 
 class FeedRestaurants extends Component {
   constructor(props) {
@@ -51,7 +52,7 @@ class FeedRestaurants extends Component {
           }
         />
         <FilterWrapper>
-          <FilterScroll handleClick={this.handleFilterClick} />
+          <FilterScroll handleClick={this.handleFilterClick} actualValue={this.state.actualValue} />
         </FilterWrapper>
         <CardsWrapper>
           {this.props.restaurantList
@@ -63,7 +64,8 @@ class FeedRestaurants extends Component {
                 <CardsRestaurants key={restaurant.id} restaurant={restaurant} />
               )
             })}
-        </CardsWrapper>
+        </CardsWrapper>            
+        <CardOrder />   
         <MyBottonNav />
       </MainWrapper>
     )

@@ -19,37 +19,29 @@ const NavList = styled.ul`
   -webkit-overflow-scrolling: touch;
   &::-webkit-scrollbar {
   width: 20px;
-}
+  }
 `
 const ListItem = styled.li`
   padding: 14px 16px;
   display: block;
-  color: black;
+  color: ${props => props.color? '#5cb646' : 'black'};
   font-weight: bold;
   text-decoration: none;
   text-transform: uppercase;
   font-size: 14px; 
-  :hover{
-    
-  } 
+
 `
 
 
 export default function FilterScroll(props) {
-
+    const restaurantType = ['Hamburguer', 'Árabe', 'Asiática', 'Mexicana', 'Baiana', 'Carnes', 'Italiana', 'Sorvetes', 'Petiscos']
     return (
         <NavBar>
             <Container>
                 <NavList>
-                    <ListItem onClick={() => props.handleClick("Hamburguer")}>Burger</ListItem>
-                    <ListItem onClick={() => props.handleClick("Árabe")}>Árabe</ListItem>
-                    <ListItem onClick={() => props.handleClick("Asiática")}>Asiática</ListItem>
-                    <ListItem onClick={() => props.handleClick("Mexicana")}>Mexicana</ListItem>
-                    <ListItem onClick={() => props.handleClick("Baiana")}>Baiana</ListItem>
-                    <ListItem onClick={() => props.handleClick("Carnes")}>Carnes</ListItem>
-                    <ListItem onClick={() => props.handleClick("Italiana")}>Massas</ListItem>                    
-                    <ListItem onClick={() => props.handleClick("Sorvetes")}>Sorvetes</ListItem>
-                    <ListItem onClick={() => props.handleClick("Petiscos")}>Petiscos</ListItem>
+                  {restaurantType.map(type => {
+                    return <ListItem color={props.actualValue === type} onClick={() => props.handleClick(type)}>{type}</ListItem>
+                  })}
                 </NavList>
             </Container>
         </NavBar>

@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
-import { login } from '../../actions/profile'
 import { routes } from '../Router'
+import { login } from '../../actions/profile'
 import MyButton from "../../components/material/Button";
 import { MyPasswordInput, MyInput } from "../../components/material/Inputs";
-import { PageWrapper, FormStyle, LogoFutureEats, Text } from "./style"
-
+import { PageWrapper, FormStyle, LogoFutureEats, Text } from "./style";
 
 class LoginPage extends Component {
   constructor(props) {
@@ -40,6 +39,11 @@ class LoginPage extends Component {
     })
   }
 
+  handleSignUp = () => {
+    window.localStorage.removeItem("token")
+    this.props.goToRegisterPage()
+  }
+
   render() {
     return (
       <PageWrapper>
@@ -65,7 +69,7 @@ class LoginPage extends Component {
           />
           <MyButton btnText="Entrar" />
         </FormStyle>
-        <Text>Não possui cadastro? <span onClick={this.props.goToRegisterPage}>Clique aqui</span></Text>
+        <Text>Não possui cadastro? <span onClick={this.handleSignUp}>Clique aqui</span></Text>
       </PageWrapper>
     );
   }
