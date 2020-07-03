@@ -28,8 +28,7 @@ const ListItem = styled.li`
   font-weight: bold;
   text-decoration: none;
   text-transform: uppercase;
-  font-size: 14px; 
-
+  font-size: 14px;
 `
 
 

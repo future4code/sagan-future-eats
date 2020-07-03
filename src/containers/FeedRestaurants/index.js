@@ -7,11 +7,12 @@ import { push } from "connected-react-router";
 import { routes } from '../Router';
 import { connect } from 'react-redux';
 import { getRestaurants } from '../../actions/GetRestaurantsAction';
-import { Input, InputAdornment, Typography } from '@material-ui/core';
+import { InputAdornment } from '@material-ui/core';
 
 import SearchIcon from '@material-ui/icons/Search';
 import CardsRestaurants from './CardsRestaurants';
 import CardOrder from './CardOrderProgress';
+import { getActiveOrder, setActiveOrder} from '../../actions/Order';
 
 class FeedRestaurants extends Component {
   constructor(props) {
@@ -25,7 +26,15 @@ class FeedRestaurants extends Component {
     if (localStorage.getItem('token') === null) {
       this.props.goToLogin()
     }
-    this.props.getRestaurants()
+    this.props.getActiveOrder()
+    this.props.getRestaurants()    
+  }
+
+  componentDidUpdate(){   
+      if(this.props.activeOrder){
+        let expiresTime = this.props.activeOrder.expiresAt -  Date.now()
+        setTimeout(() => this.props.setActiveOrderNull(null), 30000)
+      }     
   }
 
   handleFilterClick = (valorAlterado) => {
@@ -36,9 +45,8 @@ class FeedRestaurants extends Component {
     }
   }
 
-  render() {
+  render(){
     return (
-
       <MainWrapper>
         <MyPageTitle pageTitle={"FutureEats"} />
         <InputSearch
@@ -65,7 +73,7 @@ class FeedRestaurants extends Component {
               )
             })}
         </CardsWrapper>            
-        <CardOrder />   
+        {this.props.activeOrder && <CardOrder activeOrder={this.props.activeOrder}/>}   
         <MyBottonNav />
       </MainWrapper>
     )
@@ -74,12 +82,15 @@ class FeedRestaurants extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    restaurantList: state.store.restaurantList
+    restaurantList: state.store.restaurantList,
+    activeOrder: state.store.activeOrder
   }
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    setActiveOrderNull: (order) => dispatch(setActiveOrder(order)),
+    getActiveOrder: () => dispatch(getActiveOrder()),
     getRestaurants: () => dispatch(getRestaurants()),
     goToLogin: () => dispatch(push(routes.login)),
     goToSearch: () => dispatch(push(routes.inputSearch))

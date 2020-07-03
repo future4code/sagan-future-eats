@@ -24,7 +24,6 @@ class ProductCard extends React.Component {
 
   checkProductAlreadyInOrder = (thisProductId) => {
     if (this.props.restaurantOrder.products) {
-      console.log(this.props.restaurantOrder.products)
       const productAdded = this.props.restaurantOrder.products.filter(product => (
         product.id === thisProductId
         ))
