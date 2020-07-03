@@ -2,17 +2,10 @@ const initialState = {
   restaurantList: [],
   restaurantDetails: [],
   restaurantOrder: {
-    products: [{
-      category: "Pastel",
-      description: "Pastel autêntico, feito na hora!",
-      id: "3vcYYSOEf8dKeTPd7vHe",
-      name: "Pastel",
-      photoUrl: "https://static-images.ifood.com.br/image/upload/f_auto,t_high/pratos/65c38aa8-b094-413d-9a80-ddc256bfcc78/201907031408_66194519.jpg",
-      price: 3,
-      quantity: 3
-    }]
+    products: []
   },
   orderHistory: [],
+  activeOrder: null
 }
 
 export const store = (state = initialState, action) => {
@@ -53,6 +46,11 @@ export const store = (state = initialState, action) => {
       return {
         ...state,
         orderHistory: action.payload.orders
+      }
+    case 'SET_ACTIVE_ORDER':
+      return {
+        ...state,
+        activeOrder: action.payload.order
       }
     default:
       return state;
