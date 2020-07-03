@@ -2,13 +2,6 @@ import axios from 'axios'
 
 const baseURL = 'https://us-central1-missao-newton.cloudfunctions.net/futureEats'
 
-  // let restaurantId = orders[0].restaurantId
-  // let formatedOrder = []
-  // formatedOrder = orders.map(order => {
-  //   delete order.restaurantId
-  //   return order
-  // })
-
 //*****ASSÍNCRONAS*****//
 export const getActiveOrder = () => async (dispatch) => {
   try {
@@ -36,6 +29,8 @@ export const placeOrder = (paymentMethod, orders) => async (dispatch) => {
       },
       { headers: { auth: localStorage.getItem("token") } }
     )
+    dispatch(setOrder({products:[]}))
+
     console.log("Boa")
   } catch (error) {
     console.error(error)

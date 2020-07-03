@@ -12,7 +12,7 @@ import { InputAdornment } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import CardsRestaurants from './CardsRestaurants';
 import CardOrder from './CardOrderProgress';
-import { getActiveOrder, setActiveOrder} from '../../actions/Order';
+import { getActiveOrder, setActiveOrder, setOrder} from '../../actions/Order';
 
 class FeedRestaurants extends Component {
   constructor(props) {
@@ -32,9 +32,13 @@ class FeedRestaurants extends Component {
 
   componentDidUpdate(){   
       if(this.props.activeOrder){
-        let expiresTime = this.props.activeOrder.expiresAt -  Date.now()
-        setTimeout(() => this.props.setActiveOrderNull(null), 30000)
+        const expiresTime = this.props.activeOrder.expiresAt -  Date.now()
+        setTimeout(this.handleOrderOver, expiresTime)
       }     
+  }
+
+  handleOrderOver = () => {
+    this.props.setActiveOrderNull(null)
   }
 
   handleFilterClick = (valorAlterado) => {
@@ -91,6 +95,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setActiveOrderNull: (order) => dispatch(setActiveOrder(order)),
     getActiveOrder: () => dispatch(getActiveOrder()),
+    setOrder: (order) => dispatch(setOrder(order)),
     getRestaurants: () => dispatch(getRestaurants()),
     goToLogin: () => dispatch(push(routes.login)),
     goToSearch: () => dispatch(push(routes.inputSearch))

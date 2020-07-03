@@ -136,7 +136,6 @@ const mapStateToProps = (state) => {
     return {
         restaurantOrder: state.store.restaurantOrder,
         profile: state.profile.profileDetails,
-
     }
 };
 
